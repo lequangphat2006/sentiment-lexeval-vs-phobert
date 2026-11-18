@@ -1,0 +1,685 @@
+2026-08-30 00:37:44,653 | INFO     | ############################################################
+2026-08-30 00:37:44,653 | INFO     | CHẠY ĐA SEED V40 (v40.4) — 10 seed: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51] — group_col='near_dup_group_id'
+2026-08-30 00:37:44,653 | INFO     | ############################################################
+2026-08-30 00:37:44,653 | INFO     | 
+########## [V40] SEED 1/10 = 42 ##########
+2026-08-30 00:37:44,653 | INFO     | ============================================================
+2026-08-30 00:37:44,653 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=42)
+2026-08-30 00:37:44,653 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 00:37:44,653 | INFO     | ============================================================
+2026-08-30 00:37:44,830 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 00:37:44,830 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 00:37:44,830 | INFO     | Tiền xử lý văn bản...
+2026-08-30 00:38:28,785 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 00:38:28,811 | INFO     | Train: 23926 | Calibration: 7982 | Test: 7982
+2026-08-30 00:38:32,786 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=42): +80 POS, +292 NEG trên 372 ứng viên → lexicon 645 mục.
+2026-08-30 00:38:32,787 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('nghị', -4.765, 187), ('trả', -3.718, 511), ('đổi', -3.195, 776), ('vậy_mà', -4.41, 45), ('tróc', -4.282, 48), ('chảy', -3.287, 110), ('nhầm', -3.102, 105), ('gọn', 2.452, 302), ('đài', -3.467, 52), ('vứt', -3.962, 31), ('ơn', 2.092, 704), ('lợi', 2.613, 186), ('đề', -2.242, 397), ('lum', -3.381, 49), ('tiện', 2.11, 515), ('nấy', -2.936, 87), ('rớt', -2.858, 97), ('phản', -2.626, 144), ('chóng', 2.551, 158), ('mở', -2.134, 427)]
+2026-08-30 00:38:32,787 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 00:38:37,851 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.8% | Test = 96.7% (trước mở rộng: 79.7%) (ĐẠT)
+2026-08-30 00:38:37,851 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 00:39:59,697 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1307)
+2026-08-30 00:40:00,144 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 00:53:28,338 | INFO     | Best params: {'tfidf_max_feat': 30000, 'ngram_range': (1, 2), 'min_df': 3, 'lr_C': 29.836379021969236, 'sublinear_tf': True}
+2026-08-30 00:53:28,339 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9487  | trial bị cắt: 10/30
+2026-08-30 00:53:28,339 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 00:54:23,343 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 49.3s
+2026-08-30 00:55:12,093 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 48.7s
+2026-08-30 00:55:58,939 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 46.8s
+2026-08-30 00:56:46,350 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 47.4s
+2026-08-30 00:57:37,599 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 51.2s
+2026-08-30 00:57:37,600 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 00:57:37,888 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 00:57:37,888 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 00:57:42,944 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9578
+2026-08-30 00:57:45,464 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9593
+2026-08-30 00:57:49,323 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9591
+2026-08-30 00:57:54,211 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9591
+2026-08-30 00:58:00,026 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9592
+2026-08-30 00:58:00,026 | INFO     | Chọn C=0.1 với F1-CV(train)=0.9593
+2026-08-30 00:58:01,457 | INFO     | [CALIB-35] Temperature scaling: T=1.0033 | ECE(CV nội bộ trên Cal) 0.0179 → 0.0179 → LOẠI
+2026-08-30 00:58:18,172 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = +0.0000 ± 0.0005 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 00:58:18,173 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9547 → 0.9547 (bagging=15, co ngót λ=0.7)
+2026-08-30 00:58:18,173 | INFO     | Đánh giá trên tập Test...
+2026-08-30 00:58:18,191 | INFO     | ✅ F1-Macro TEST = 0.9612   (argmax thuần: 0.9612, Δ lớp quyết định = +0.0000)
+2026-08-30 00:58:18,191 | INFO     | ✅ Accuracy      = 0.9612   (argmax thuần: 0.9612)
+2026-08-30 00:58:18,191 | INFO     | ✅ ECE=0.0085 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0145 | ECE_cw=0.0098 | Brier=0.0615
+2026-08-30 00:58:18,198 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.95      0.95      2575
+     neutral       0.96      0.96      0.96      2796
+    positive       0.97      0.97      0.97      2611
+
+    accuracy                           0.96      7982
+   macro avg       0.96      0.96      0.96      7982
+weighted avg       0.96      0.96      0.96      7982
+
+2026-08-30 00:58:18,528 | INFO     |    negative   P=0.957 R=0.951 F1=0.954  P−R=+0.006
+2026-08-30 00:58:18,528 | INFO     |    neutral    P=0.956 R=0.962 F1=0.959  P−R=-0.006
+2026-08-30 00:58:18,528 | INFO     |    positive   P=0.971 R=0.971 F1=0.971  P−R=+0.000
+2026-08-30 00:58:18,528 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 00:58:18,633 | INFO     |    [nhóm] phu_dinh     n=3510   acc=0.9516 f1_macro=0.9327
+2026-08-30 00:58:18,634 | INFO     |    [nhóm] hedge        n=829    acc=0.9723 f1_macro=0.6758
+2026-08-30 00:58:18,634 | INFO     |    [nhóm] trai_chieu   n=2342   acc=0.9530 f1_macro=0.9081
+2026-08-30 00:58:18,670 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7982) → reports/v40_probs/v40_test_seed_42.csv
+2026-08-30 00:58:18,701 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7982) → reports/v40_probs/v40_calib_seed_42.csv
+2026-08-30 00:58:31,056 | INFO     | 📁 Đã lưu models/production/v40/seed_42/v40_bundle.pkl  (157.93 MB, nén mức 3)
+2026-08-30 00:58:31,056 | INFO     | ⏱️  Tổng thời gian: 1246.4s
+2026-08-30 00:58:31,112 | INFO     | 
+########## [V40] SEED 2/10 = 43 ##########
+2026-08-30 00:58:31,112 | INFO     | ============================================================
+2026-08-30 00:58:31,113 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=43)
+2026-08-30 00:58:31,113 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 00:58:31,113 | INFO     | ============================================================
+2026-08-30 00:58:31,257 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 00:58:31,257 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 00:58:31,257 | INFO     | Tiền xử lý văn bản...
+2026-08-30 00:59:15,286 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 00:59:15,310 | INFO     | Train: 23925 | Calibration: 7989 | Test: 7976
+2026-08-30 00:59:19,246 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=43): +90 POS, +307 NEG trên 397 ứng viên → lexicon 670 mục.
+2026-08-30 00:59:19,246 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('rớt', -4.831, 93), ('trả', -3.427, 446), ('nghị', -3.94, 195), ('đổi', -2.923, 779), ('tróc', -4.469, 55), ('gọn', 2.797, 310), ('rỉ', -4.208, 42), ('nhầm', -3.411, 92), ('chảy', -3.267, 111), ('dám', -3.411, 88), ('đề', -2.456, 376), ('ơn', 2.179, 720), ('rè', -3.195, 78), ('phù', 2.116, 562), ('đậy', -3.717, 35), ('hư', -2.479, 203), ('vậy_mà', -3.37, 47), ('nấy', -2.947, 80), ('tiện', 2.058, 521), ('lum', -3.347, 45)]
+2026-08-30 00:59:19,247 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 00:59:24,222 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.7% | Test = 96.8% (trước mở rộng: 79.2%) (ĐẠT)
+2026-08-30 00:59:24,222 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 01:00:46,099 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1335)
+2026-08-30 01:00:46,540 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 01:15:29,587 | INFO     | Best params: {'tfidf_max_feat': 50000, 'ngram_range': (1, 3), 'min_df': 3, 'lr_C': 97.14138931607431, 'sublinear_tf': False}
+2026-08-30 01:15:29,588 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9470  | trial bị cắt: 16/30
+2026-08-30 01:15:29,588 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 01:16:23,411 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 48.1s
+2026-08-30 01:17:10,410 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 47.0s
+2026-08-30 01:17:56,866 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 46.5s
+2026-08-30 01:18:42,443 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 45.6s
+2026-08-30 01:19:29,060 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 46.6s
+2026-08-30 01:19:29,061 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 01:19:29,301 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 01:19:29,301 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 01:19:34,555 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9575
+2026-08-30 01:19:37,301 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9583
+2026-08-30 01:19:41,242 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9581
+2026-08-30 01:19:45,699 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9582
+2026-08-30 01:19:50,931 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9583
+2026-08-30 01:19:50,936 | INFO     | Chọn C=0.1 với F1-CV(train)=0.9583
+2026-08-30 01:19:52,009 | INFO     | [CALIB-35] Temperature scaling: T=0.9601 | ECE(CV nội bộ trên Cal) 0.0163 → 0.0167 → LOẠI
+2026-08-30 01:20:09,466 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = +0.0006 ± 0.0004 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 01:20:09,466 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9587 → 0.9587 (bagging=15, co ngót λ=0.7)
+2026-08-30 01:20:09,466 | INFO     | Đánh giá trên tập Test...
+2026-08-30 01:20:09,483 | INFO     | ✅ F1-Macro TEST = 0.9581   (argmax thuần: 0.9581, Δ lớp quyết định = +0.0000)
+2026-08-30 01:20:09,483 | INFO     | ✅ Accuracy      = 0.9580   (argmax thuần: 0.9580)
+2026-08-30 01:20:09,483 | INFO     | ✅ ECE=0.0078 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0145 | ECE_cw=0.0085 | Brier=0.0647
+2026-08-30 01:20:09,491 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.96      0.95      2629
+     neutral       0.96      0.96      0.96      2766
+    positive       0.97      0.96      0.96      2581
+
+    accuracy                           0.96      7976
+   macro avg       0.96      0.96      0.96      7976
+weighted avg       0.96      0.96      0.96      7976
+
+2026-08-30 01:20:09,775 | INFO     |    negative   P=0.947 R=0.955 F1=0.951  P−R=-0.008
+2026-08-30 01:20:09,775 | INFO     |    neutral    P=0.957 R=0.960 F1=0.958  P−R=-0.002
+2026-08-30 01:20:09,776 | INFO     |    positive   P=0.971 R=0.959 F1=0.965  P−R=+0.011
+2026-08-30 01:20:09,776 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 01:20:09,881 | INFO     |    [nhóm] phu_dinh     n=3621   acc=0.9489 f1_macro=0.9285
+2026-08-30 01:20:09,881 | INFO     |    [nhóm] hedge        n=859    acc=0.9732 f1_macro=0.7082
+2026-08-30 01:20:09,881 | INFO     |    [nhóm] trai_chieu   n=2294   acc=0.9455 f1_macro=0.8919
+2026-08-30 01:20:09,914 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7976) → reports/v40_probs/v40_test_seed_43.csv
+2026-08-30 01:20:09,947 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7989) → reports/v40_probs/v40_calib_seed_43.csv
+2026-08-30 01:20:22,709 | INFO     | 📁 Đã lưu models/production/v40/seed_43/v40_bundle.pkl  (157.89 MB, nén mức 3)
+2026-08-30 01:20:22,709 | INFO     | ⏱️  Tổng thời gian: 1311.6s
+2026-08-30 01:20:22,780 | INFO     | 
+########## [V40] SEED 3/10 = 44 ##########
+2026-08-30 01:20:22,781 | INFO     | ============================================================
+2026-08-30 01:20:22,781 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=44)
+2026-08-30 01:20:22,781 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 01:20:22,781 | INFO     | ============================================================
+2026-08-30 01:20:22,930 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 01:20:22,930 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 01:20:22,930 | INFO     | Tiền xử lý văn bản...
+2026-08-30 01:21:07,368 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 01:21:07,391 | INFO     | Train: 23937 | Calibration: 7979 | Test: 7974
+2026-08-30 01:21:11,324 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=44): +82 POS, +300 NEG trên 382 ứng viên → lexicon 655 mục.
+2026-08-30 01:21:11,324 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('trả', -3.548, 505), ('đổi', -3.109, 792), ('nghị', -3.691, 196), ('chảy', -4.031, 105), ('lum', -4.407, 47), ('tùm', -4.383, 46), ('nhầm', -3.184, 112), ('tróc', -4.031, 39), ('dám', -3.184, 104), ('rỉ', -4.066, 37), ('khét', -3.996, 37), ('ơn', 2.185, 697), ('mở', -2.36, 373), ('đậy', -3.838, 37), ('nấy', -3.033, 90), ('gọn', 2.355, 321), ('đề', -2.263, 387), ('hư', -2.503, 195), ('vậy_mà', -3.378, 48), ('dở', -3.284, 49)]
+2026-08-30 01:21:11,324 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 01:21:16,077 | INFO     | [DIAG-45] Độ phủ lexicon Train = 97.0% | Test = 96.8% (trước mở rộng: 79.5%) (ĐẠT)
+2026-08-30 01:21:16,077 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 01:22:38,850 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1288)
+2026-08-30 01:22:39,298 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 01:36:37,102 | INFO     | Best params: {'tfidf_max_feat': 20000, 'ngram_range': (1, 3), 'min_df': 3, 'lr_C': 25.893492801758683, 'sublinear_tf': False}
+2026-08-30 01:36:37,104 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9481  | trial bị cắt: 21/30
+2026-08-30 01:36:37,105 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 01:37:34,956 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 52.1s
+2026-08-30 01:38:31,848 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 56.9s
+2026-08-30 01:39:21,430 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 49.6s
+2026-08-30 01:40:10,399 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 49.0s
+2026-08-30 01:41:01,903 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 51.5s
+2026-08-30 01:41:01,905 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 01:41:02,156 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 01:41:02,156 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 01:41:07,722 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9576
+2026-08-30 01:41:09,895 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9595
+2026-08-30 01:41:13,911 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9595
+2026-08-30 01:41:19,451 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9592
+2026-08-30 01:41:25,887 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9590
+2026-08-30 01:41:25,887 | INFO     | Chọn C=0.1 với F1-CV(train)=0.9595
+2026-08-30 01:41:27,111 | INFO     | [CALIB-35] Temperature scaling: T=0.9955 | ECE(CV nội bộ trên Cal) 0.0158 → 0.0159 → LOẠI
+2026-08-30 01:41:43,426 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = -0.0009 ± 0.0003 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 01:41:43,427 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9579 → 0.9579 (bagging=15, co ngót λ=0.7)
+2026-08-30 01:41:43,427 | INFO     | Đánh giá trên tập Test...
+2026-08-30 01:41:43,443 | INFO     | ✅ F1-Macro TEST = 0.9597   (argmax thuần: 0.9597, Δ lớp quyết định = +0.0000)
+2026-08-30 01:41:43,443 | INFO     | ✅ Accuracy      = 0.9597   (argmax thuần: 0.9597)
+2026-08-30 01:41:43,443 | INFO     | ✅ ECE=0.0069 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0139 | ECE_cw=0.0087 | Brier=0.0632
+2026-08-30 01:41:43,451 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.96      0.95      2548
+     neutral       0.96      0.96      0.96      2787
+    positive       0.98      0.96      0.97      2639
+
+    accuracy                           0.96      7974
+   macro avg       0.96      0.96      0.96      7974
+weighted avg       0.96      0.96      0.96      7974
+
+2026-08-30 01:41:43,735 | INFO     |    negative   P=0.948 R=0.959 F1=0.953  P−R=-0.011
+2026-08-30 01:41:43,736 | INFO     |    neutral    P=0.956 R=0.960 F1=0.958  P−R=-0.004
+2026-08-30 01:41:43,736 | INFO     |    positive   P=0.976 R=0.961 F1=0.968  P−R=+0.016
+2026-08-30 01:41:43,736 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 01:41:43,841 | INFO     |    [nhóm] phu_dinh     n=3540   acc=0.9492 f1_macro=0.9296
+2026-08-30 01:41:43,842 | INFO     |    [nhóm] hedge        n=864    acc=0.9792 f1_macro=0.6736
+2026-08-30 01:41:43,842 | INFO     |    [nhóm] trai_chieu   n=2346   acc=0.9523 f1_macro=0.9099
+2026-08-30 01:41:43,873 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7974) → reports/v40_probs/v40_test_seed_44.csv
+2026-08-30 01:41:43,905 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7979) → reports/v40_probs/v40_calib_seed_44.csv
+2026-08-30 01:41:56,242 | INFO     | 📁 Đã lưu models/production/v40/seed_44/v40_bundle.pkl  (157.34 MB, nén mức 3)
+2026-08-30 01:41:56,242 | INFO     | ⏱️  Tổng thời gian: 1293.5s
+2026-08-30 01:41:56,304 | INFO     | 
+########## [V40] SEED 4/10 = 45 ##########
+2026-08-30 01:41:56,304 | INFO     | ============================================================
+2026-08-30 01:41:56,304 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=45)
+2026-08-30 01:41:56,304 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 01:41:56,304 | INFO     | ============================================================
+2026-08-30 01:41:56,444 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 01:41:56,444 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 01:41:56,444 | INFO     | Tiền xử lý văn bản...
+2026-08-30 01:42:39,985 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 01:42:40,010 | INFO     | Train: 23940 | Calibration: 7980 | Test: 7970
+2026-08-30 01:42:43,986 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=45): +79 POS, +298 NEG trên 377 ứng viên → lexicon 650 mục.
+2026-08-30 01:42:43,986 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('nghị', -4.868, 206), ('đổi', -3.057, 811), ('trả', -3.236, 477), ('tróc', -4.182, 45), ('lum', -4.242, 41), ('nhầm', -3.429, 100), ('rỉ', -4.213, 40), ('tùm', -4.213, 39), ('chảy', -3.261, 104), ('tiện', 2.28, 540), ('vậy_mà', -3.505, 51), ('phản', -2.692, 155), ('ơn', 2.069, 699), ('nấy', -3.053, 83), ('đề', -2.22, 413), ('khét', -3.769, 31), ('gọn', 2.237, 329), ('lợi', 2.439, 200), ('đài', -3.375, 45), ('đáy', -2.931, 75)]
+2026-08-30 01:42:43,986 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 01:42:48,678 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.9% | Test = 97.0% (trước mở rộng: 79.4%) (ĐẠT)
+2026-08-30 01:42:48,678 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 01:44:10,430 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1314)
+2026-08-30 01:44:10,877 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 01:57:54,828 | INFO     | Best params: {'tfidf_max_feat': 40000, 'ngram_range': (1, 3), 'min_df': 3, 'lr_C': 98.06423941369451, 'sublinear_tf': True}
+2026-08-30 01:57:54,830 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9500  | trial bị cắt: 6/30
+2026-08-30 01:57:54,831 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 01:58:50,287 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 49.9s
+2026-08-30 01:59:37,442 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 47.2s
+2026-08-30 02:00:26,053 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 48.6s
+2026-08-30 02:01:16,124 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 50.1s
+2026-08-30 02:02:11,281 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 55.2s
+2026-08-30 02:02:11,282 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 02:02:11,543 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 02:02:11,544 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 02:02:16,464 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9578
+2026-08-30 02:02:19,023 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9591
+2026-08-30 02:02:22,610 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9593
+2026-08-30 02:02:28,180 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9592
+2026-08-30 02:02:33,341 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9593
+2026-08-30 02:02:33,342 | INFO     | Chọn C=1.0 với F1-CV(train)=0.9593
+2026-08-30 02:02:34,993 | INFO     | [CALIB-35] Temperature scaling: T=0.9964 | ECE(CV nội bộ trên Cal) 0.0125 → 0.0126 → LOẠI
+2026-08-30 02:02:51,744 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = +0.0002 ± 0.0005 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 02:02:51,745 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9622 → 0.9622 (bagging=15, co ngót λ=0.7)
+2026-08-30 02:02:51,745 | INFO     | Đánh giá trên tập Test...
+2026-08-30 02:02:51,760 | INFO     | ✅ F1-Macro TEST = 0.9569   (argmax thuần: 0.9569, Δ lớp quyết định = +0.0000)
+2026-08-30 02:02:51,761 | INFO     | ✅ Accuracy      = 0.9568   (argmax thuần: 0.9568)
+2026-08-30 02:02:51,761 | INFO     | ✅ ECE=0.0083 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0140 | ECE_cw=0.0082 | Brier=0.0687
+2026-08-30 02:02:51,768 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.95      0.95      2568
+     neutral       0.95      0.96      0.95      2815
+    positive       0.97      0.96      0.97      2587
+
+    accuracy                           0.96      7970
+   macro avg       0.96      0.96      0.96      7970
+weighted avg       0.96      0.96      0.96      7970
+
+2026-08-30 02:02:52,047 | INFO     |    negative   P=0.947 R=0.953 F1=0.950  P−R=-0.007
+2026-08-30 02:02:52,047 | INFO     |    neutral    P=0.952 R=0.958 F1=0.955  P−R=-0.006
+2026-08-30 02:02:52,047 | INFO     |    positive   P=0.973 R=0.959 F1=0.966  P−R=+0.014
+2026-08-30 02:02:52,047 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 02:02:52,151 | INFO     |    [nhóm] phu_dinh     n=3498   acc=0.9471 f1_macro=0.9254
+2026-08-30 02:02:52,151 | INFO     |    [nhóm] hedge        n=843    acc=0.9763 f1_macro=0.5971
+2026-08-30 02:02:52,151 | INFO     |    [nhóm] trai_chieu   n=2404   acc=0.9513 f1_macro=0.9103
+2026-08-30 02:02:52,184 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7970) → reports/v40_probs/v40_test_seed_45.csv
+2026-08-30 02:02:52,217 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7980) → reports/v40_probs/v40_calib_seed_45.csv
+2026-08-30 02:03:05,006 | INFO     | 📁 Đã lưu models/production/v40/seed_45/v40_bundle.pkl  (158.08 MB, nén mức 3)
+2026-08-30 02:03:05,006 | INFO     | ⏱️  Tổng thời gian: 1268.7s
+2026-08-30 02:03:05,070 | INFO     | 
+########## [V40] SEED 5/10 = 46 ##########
+2026-08-30 02:03:05,070 | INFO     | ============================================================
+2026-08-30 02:03:05,070 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=46)
+2026-08-30 02:03:05,070 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 02:03:05,070 | INFO     | ============================================================
+2026-08-30 02:03:05,210 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 02:03:05,210 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 02:03:05,210 | INFO     | Tiền xử lý văn bản...
+2026-08-30 02:03:49,047 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 02:03:49,072 | INFO     | Train: 23937 | Calibration: 7990 | Test: 7963
+2026-08-30 02:03:53,093 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=46): +79 POS, +294 NEG trên 373 ứng viên → lexicon 646 mục.
+2026-08-30 02:03:53,093 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('trả', -3.69, 491), ('đổi', -3.066, 766), ('nghị', -3.86, 175), ('đài', -4.515, 48), ('tróc', -4.398, 53), ('lum', -4.373, 44), ('chập', -4.267, 48), ('tùm', -4.348, 42), ('gọn', 2.718, 331), ('rớt', -3.578, 78), ('lỡ', -4.147, 38), ('hả', -4.209, 35), ('ơn', 2.2, 678), ('chảy', -2.972, 104), ('dám', -3.035, 91), ('tiện', 2.163, 534), ('mở', -2.273, 384), ('hư', -2.549, 186), ('vậy_mà', -3.416, 48), ('lợi', 2.478, 208)]
+2026-08-30 02:03:53,093 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 02:03:57,784 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.4% | Test = 96.2% (trước mở rộng: 79.4%) (ĐẠT)
+2026-08-30 02:03:57,785 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 02:05:18,905 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1378)
+2026-08-30 02:05:19,691 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 02:19:50,862 | INFO     | Best params: {'tfidf_max_feat': 30000, 'ngram_range': (1, 3), 'min_df': 3, 'lr_C': 44.23534193516394, 'sublinear_tf': False}
+2026-08-30 02:19:50,863 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9484  | trial bị cắt: 10/30
+2026-08-30 02:19:50,863 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 02:20:50,304 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 53.7s
+2026-08-30 02:21:40,520 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 50.2s
+2026-08-30 02:22:30,612 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 50.1s
+2026-08-30 02:23:19,881 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 49.3s
+2026-08-30 02:24:10,030 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 50.1s
+2026-08-30 02:24:10,031 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 02:24:10,277 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 02:24:10,277 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 02:24:16,078 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9580
+2026-08-30 02:24:19,061 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9593
+2026-08-30 02:24:22,530 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9594
+2026-08-30 02:24:27,429 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9596
+2026-08-30 02:24:31,700 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9594
+2026-08-30 02:24:31,700 | INFO     | Chọn C=5.0 với F1-CV(train)=0.9596
+2026-08-30 02:24:32,620 | INFO     | [CALIB-35] Temperature scaling: T=0.9700 | ECE(CV nội bộ trên Cal) 0.0154 → 0.0157 → LOẠI
+2026-08-30 02:24:53,939 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = +0.0012 ± 0.0004 (SE) → tiêu chí mean−2·SE > 0 → ÁP DỤNG
+2026-08-30 02:24:53,939 | INFO     | [DECIDE-28] w=[1.  1.5 1.5] | F1-Cal 0.9585 → 0.9596 (bagging=15, co ngót λ=0.7)
+2026-08-30 02:24:53,939 | INFO     | Đánh giá trên tập Test...
+2026-08-30 02:24:53,955 | INFO     | ✅ F1-Macro TEST = 0.9553   (argmax thuần: 0.9559, Δ lớp quyết định = -0.0006)
+2026-08-30 02:24:53,955 | INFO     | ✅ Accuracy      = 0.9552   (argmax thuần: 0.9558)
+2026-08-30 02:24:53,955 | INFO     | ✅ ECE=0.0079 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0145 | ECE_cw=0.0086 | Brier=0.0682
+2026-08-30 02:24:53,962 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.94      0.95      2604
+     neutral       0.94      0.96      0.95      2759
+    positive       0.97      0.97      0.97      2600
+
+    accuracy                           0.96      7963
+   macro avg       0.96      0.96      0.96      7963
+weighted avg       0.96      0.96      0.96      7963
+
+2026-08-30 02:24:54,240 | INFO     |    negative   P=0.957 R=0.939 F1=0.947  P−R=+0.018
+2026-08-30 02:24:54,240 | INFO     |    neutral    P=0.941 R=0.960 F1=0.951  P−R=-0.019
+2026-08-30 02:24:54,240 | INFO     |    positive   P=0.969 R=0.966 F1=0.968  P−R=+0.003
+2026-08-30 02:24:54,240 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 02:24:54,346 | INFO     |    [nhóm] phu_dinh     n=3526   acc=0.9441 f1_macro=0.9267
+2026-08-30 02:24:54,346 | INFO     |    [nhóm] hedge        n=855    acc=0.9673 f1_macro=0.6470
+2026-08-30 02:24:54,346 | INFO     |    [nhóm] trai_chieu   n=2354   acc=0.9422 f1_macro=0.8899
+2026-08-30 02:24:54,377 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7963) → reports/v40_probs/v40_test_seed_46.csv
+2026-08-30 02:24:54,407 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7990) → reports/v40_probs/v40_calib_seed_46.csv
+2026-08-30 02:25:07,212 | INFO     | 📁 Đã lưu models/production/v40/seed_46/v40_bundle.pkl  (158.70 MB, nén mức 3)
+2026-08-30 02:25:07,212 | INFO     | ⏱️  Tổng thời gian: 1322.1s
+2026-08-30 02:25:07,273 | INFO     | 
+########## [V40] SEED 6/10 = 47 ##########
+2026-08-30 02:25:07,273 | INFO     | ============================================================
+2026-08-30 02:25:07,273 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=47)
+2026-08-30 02:25:07,274 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 02:25:07,274 | INFO     | ============================================================
+2026-08-30 02:25:07,418 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 02:25:07,418 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 02:25:07,418 | INFO     | Tiền xử lý văn bản...
+2026-08-30 02:25:51,824 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 02:25:51,849 | INFO     | Train: 23936 | Calibration: 7979 | Test: 7975
+2026-08-30 02:25:55,807 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=47): +84 POS, +297 NEG trên 381 ứng viên → lexicon 654 mục.
+2026-08-30 02:25:55,807 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('đổi', -3.145, 777), ('trả', -3.279, 495), ('nghị', -3.735, 201), ('tróc', -4.43, 54), ('lum', -4.355, 42), ('tùm', -4.328, 40), ('gọn', 2.593, 327), ('chảy', -3.159, 97), ('ơn', 2.08, 679), ('mở', -2.27, 391), ('nhầm', -2.895, 106), ('hư', -2.545, 191), ('đề', -2.246, 377), ('rớt', -2.909, 95), ('truyện', 2.855, 95), ('nấy', -2.844, 93), ('vậy_mà', -3.331, 47), ('giật', -3.622, 32), ('mịn', 2.319, 225), ('phù', 1.968, 564)]
+2026-08-30 02:25:55,807 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 02:26:00,453 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.6% | Test = 96.9% (trước mở rộng: 79.5%) (ĐẠT)
+2026-08-30 02:26:00,453 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 02:27:22,425 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1280)
+2026-08-30 02:27:22,891 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 02:41:49,790 | INFO     | Best params: {'tfidf_max_feat': 80000, 'ngram_range': (1, 2), 'min_df': 2, 'lr_C': 47.11463622066365, 'sublinear_tf': False}
+2026-08-30 02:41:49,794 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9483  | trial bị cắt: 13/30
+2026-08-30 02:41:49,794 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 02:42:46,174 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 50.6s
+2026-08-30 02:43:43,866 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 57.7s
+2026-08-30 02:44:34,880 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 51.0s
+2026-08-30 02:45:24,838 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 50.0s
+2026-08-30 02:46:13,054 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 48.2s
+2026-08-30 02:46:13,055 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 02:46:13,314 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 02:46:13,314 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 02:46:18,302 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9573
+2026-08-30 02:46:20,956 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9579
+2026-08-30 02:46:24,996 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9578
+2026-08-30 02:46:29,744 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9582
+2026-08-30 02:46:34,033 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9583
+2026-08-30 02:46:34,033 | INFO     | Chọn C=10.0 với F1-CV(train)=0.9583
+2026-08-30 02:46:35,525 | INFO     | [CALIB-35] Temperature scaling: T=1.0046 | ECE(CV nội bộ trên Cal) 0.0157 → 0.0160 → LOẠI
+2026-08-30 02:46:46,933 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = -0.0000 ± 0.0002 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 02:46:46,933 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9595 → 0.9595 (bagging=15, co ngót λ=0.7)
+2026-08-30 02:46:46,933 | INFO     | Đánh giá trên tập Test...
+2026-08-30 02:46:46,949 | INFO     | ✅ F1-Macro TEST = 0.9613   (argmax thuần: 0.9613, Δ lớp quyết định = +0.0000)
+2026-08-30 02:46:46,949 | INFO     | ✅ Accuracy      = 0.9611   (argmax thuần: 0.9611)
+2026-08-30 02:46:46,949 | INFO     | ✅ ECE=0.0042 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0126 | ECE_cw=0.0069 | Brier=0.0621
+2026-08-30 02:46:46,956 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.95      0.96      2606
+     neutral       0.95      0.97      0.96      2820
+    positive       0.98      0.96      0.97      2549
+
+    accuracy                           0.96      7975
+   macro avg       0.96      0.96      0.96      7975
+weighted avg       0.96      0.96      0.96      7975
+
+2026-08-30 02:46:47,236 | INFO     |    negative   P=0.957 R=0.954 F1=0.955  P−R=+0.003
+2026-08-30 02:46:47,236 | INFO     |    neutral    P=0.950 R=0.966 F1=0.958  P−R=-0.016
+2026-08-30 02:46:47,236 | INFO     |    positive   P=0.979 R=0.963 F1=0.971  P−R=+0.016
+2026-08-30 02:46:47,236 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 02:46:47,342 | INFO     |    [nhóm] phu_dinh     n=3536   acc=0.9525 f1_macro=0.9361
+2026-08-30 02:46:47,342 | INFO     |    [nhóm] hedge        n=866    acc=0.9815 f1_macro=0.7091
+2026-08-30 02:46:47,342 | INFO     |    [nhóm] trai_chieu   n=2430   acc=0.9523 f1_macro=0.9058
+2026-08-30 02:46:47,375 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7975) → reports/v40_probs/v40_test_seed_47.csv
+2026-08-30 02:46:47,409 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7979) → reports/v40_probs/v40_calib_seed_47.csv
+2026-08-30 02:47:02,987 | INFO     | 📁 Đã lưu models/production/v40/seed_47/v40_bundle.pkl  (163.75 MB, nén mức 3)
+2026-08-30 02:47:02,987 | INFO     | ⏱️  Tổng thời gian: 1315.7s
+2026-08-30 02:47:03,068 | INFO     | 
+########## [V40] SEED 7/10 = 48 ##########
+2026-08-30 02:47:03,068 | INFO     | ============================================================
+2026-08-30 02:47:03,068 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=48)
+2026-08-30 02:47:03,068 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 02:47:03,068 | INFO     | ============================================================
+2026-08-30 02:47:03,216 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 02:47:03,217 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 02:47:03,217 | INFO     | Tiền xử lý văn bản...
+2026-08-30 02:47:47,804 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 02:47:47,829 | INFO     | Train: 23925 | Calibration: 7984 | Test: 7981
+2026-08-30 02:47:51,772 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=48): +82 POS, +299 NEG trên 381 ứng viên → lexicon 654 mục.
+2026-08-30 02:47:51,772 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('trả', -3.529, 463), ('đổi', -3.109, 810), ('nghị', -3.736, 206), ('lum', -4.385, 44), ('hở', -4.101, 49), ('tróc', -4.165, 44), ('tùm', -4.281, 39), ('rỉ', -4.068, 36), ('rớt', -3.193, 90), ('dám', -3.113, 96), ('phản', -2.815, 155), ('hư', -2.657, 199), ('gọn', 2.413, 313), ('đáy', -3.31, 65), ('đề', -2.305, 400), ('ơn', 2.07, 691), ('nội', 2.198, 384), ('mở', -2.138, 398), ('chảy', -2.722, 107), ('tiện', 2.021, 523)]
+2026-08-30 02:47:51,772 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 02:47:56,480 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.8% | Test = 97.2% (trước mở rộng: 79.3%) (ĐẠT)
+2026-08-30 02:47:56,480 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 02:49:19,476 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1313)
+2026-08-30 02:49:19,929 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 03:03:50,437 | INFO     | Best params: {'tfidf_max_feat': 70000, 'ngram_range': (1, 2), 'min_df': 2, 'lr_C': 92.87241197290142, 'sublinear_tf': True}
+2026-08-30 03:03:50,438 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9488  | trial bị cắt: 12/30
+2026-08-30 03:03:50,438 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 03:04:45,349 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 49.0s
+2026-08-30 03:05:31,981 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 46.6s
+2026-08-30 03:06:27,859 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 55.9s
+2026-08-30 03:07:22,942 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 55.1s
+2026-08-30 03:08:11,466 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 48.5s
+2026-08-30 03:08:11,467 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 03:08:11,707 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 03:08:11,708 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 03:08:16,551 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9578
+2026-08-30 03:08:18,940 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9587
+2026-08-30 03:08:23,498 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9589
+2026-08-30 03:08:28,945 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9588
+2026-08-30 03:08:33,774 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9588
+2026-08-30 03:08:33,774 | INFO     | Chọn C=1.0 với F1-CV(train)=0.9589
+2026-08-30 03:08:35,546 | INFO     | [CALIB-35] Temperature scaling: T=0.9930 | ECE(CV nội bộ trên Cal) 0.0158 → 0.0160 → LOẠI
+2026-08-30 03:08:50,930 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = +0.0001 ± 0.0002 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 03:08:50,930 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9595 → 0.9595 (bagging=15, co ngót λ=0.7)
+2026-08-30 03:08:50,930 | INFO     | Đánh giá trên tập Test...
+2026-08-30 03:08:50,946 | INFO     | ✅ F1-Macro TEST = 0.9582   (argmax thuần: 0.9582, Δ lớp quyết định = +0.0000)
+2026-08-30 03:08:50,946 | INFO     | ✅ Accuracy      = 0.9583   (argmax thuần: 0.9583)
+2026-08-30 03:08:50,946 | INFO     | ✅ ECE=0.0059 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0141 | ECE_cw=0.0089 | Brier=0.0661
+2026-08-30 03:08:50,954 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.95      0.95      2577
+     neutral       0.95      0.96      0.96      2757
+    positive       0.97      0.97      0.97      2647
+
+    accuracy                           0.96      7981
+   macro avg       0.96      0.96      0.96      7981
+weighted avg       0.96      0.96      0.96      7981
+
+2026-08-30 03:08:51,240 | INFO     |    negative   P=0.952 R=0.947 F1=0.949  P−R=+0.005
+2026-08-30 03:08:51,240 | INFO     |    neutral    P=0.951 R=0.959 F1=0.955  P−R=-0.009
+2026-08-30 03:08:51,240 | INFO     |    positive   P=0.972 R=0.968 F1=0.970  P−R=+0.004
+2026-08-30 03:08:51,241 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 03:08:51,345 | INFO     |    [nhóm] phu_dinh     n=3526   acc=0.9470 f1_macro=0.9293
+2026-08-30 03:08:51,345 | INFO     |    [nhóm] hedge        n=829    acc=0.9771 f1_macro=0.7416
+2026-08-30 03:08:51,345 | INFO     |    [nhóm] trai_chieu   n=2368   acc=0.9506 f1_macro=0.9034
+2026-08-30 03:08:51,377 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7981) → reports/v40_probs/v40_test_seed_48.csv
+2026-08-30 03:08:51,410 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7984) → reports/v40_probs/v40_calib_seed_48.csv
+2026-08-30 03:09:07,046 | INFO     | 📁 Đã lưu models/production/v40/seed_48/v40_bundle.pkl  (163.80 MB, nén mức 3)
+2026-08-30 03:09:07,046 | INFO     | ⏱️  Tổng thời gian: 1324.0s
+2026-08-30 03:09:07,128 | INFO     | 
+########## [V40] SEED 8/10 = 49 ##########
+2026-08-30 03:09:07,128 | INFO     | ============================================================
+2026-08-30 03:09:07,128 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=49)
+2026-08-30 03:09:07,128 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 03:09:07,128 | INFO     | ============================================================
+2026-08-30 03:09:07,276 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 03:09:07,276 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 03:09:07,276 | INFO     | Tiền xử lý văn bản...
+2026-08-30 03:09:52,013 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 03:09:52,038 | INFO     | Train: 23947 | Calibration: 7971 | Test: 7972
+2026-08-30 03:09:56,043 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=49): +86 POS, +303 NEG trên 389 ứng viên → lexicon 662 mục.
+2026-08-30 03:09:56,044 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('trả', -3.611, 495), ('đổi', -3.243, 758), ('nghị', -3.739, 208), ('tróc', -4.374, 55), ('lum', -4.447, 46), ('tùm', -4.399, 44), ('vậy_mà', -4.374, 42), ('phản', -3.186, 155), ('rỉ', -4.209, 40), ('gọn', 2.59, 325), ('rè', -3.223, 78), ('mở', -2.318, 415), ('chóng', 2.718, 167), ('đề', -2.301, 402), ('mịn', 2.536, 211), ('ơn', 2.063, 718), ('tiện', 2.066, 527), ('phù', 2.046, 554), ('cũ', -2.211, 344), ('dàng', 2.716, 103)]
+2026-08-30 03:09:56,044 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 03:10:00,770 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.9% | Test = 97.3% (trước mở rộng: 79.1%) (ĐẠT)
+2026-08-30 03:10:00,770 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 03:11:24,299 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1319)
+2026-08-30 03:11:25,043 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 03:26:50,920 | INFO     | Best params: {'tfidf_max_feat': 70000, 'ngram_range': (1, 3), 'min_df': 5, 'lr_C': 15.897301098457595, 'sublinear_tf': True}
+2026-08-30 03:26:50,921 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9502  | trial bị cắt: 4/30
+2026-08-30 03:26:50,921 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 03:27:46,274 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 49.5s
+2026-08-30 03:28:33,556 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 47.3s
+2026-08-30 03:29:26,414 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 52.9s
+2026-08-30 03:30:21,554 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 55.1s
+2026-08-30 03:31:10,613 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 49.1s
+2026-08-30 03:31:10,614 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 03:31:10,868 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 03:31:10,868 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 03:31:15,806 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9573
+2026-08-30 03:31:19,030 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9590
+2026-08-30 03:31:24,193 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9591
+2026-08-30 03:31:27,942 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9593
+2026-08-30 03:31:32,727 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9593
+2026-08-30 03:31:32,727 | INFO     | Chọn C=5.0 với F1-CV(train)=0.9593
+2026-08-30 03:31:34,853 | INFO     | [CALIB-35] Temperature scaling: T=0.9911 | ECE(CV nội bộ trên Cal) 0.0156 → 0.0158 → LOẠI
+2026-08-30 03:31:48,756 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = -0.0001 ± 0.0001 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 03:31:48,756 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9598 → 0.9598 (bagging=15, co ngót λ=0.7)
+2026-08-30 03:31:48,757 | INFO     | Đánh giá trên tập Test...
+2026-08-30 03:31:48,772 | INFO     | ✅ F1-Macro TEST = 0.9586   (argmax thuần: 0.9586, Δ lớp quyết định = +0.0000)
+2026-08-30 03:31:48,773 | INFO     | ✅ Accuracy      = 0.9585   (argmax thuần: 0.9585)
+2026-08-30 03:31:48,773 | INFO     | ✅ ECE=0.0077 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0116 | ECE_cw=0.0060 | Brier=0.0640
+2026-08-30 03:31:48,780 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.95      0.95      2608
+     neutral       0.95      0.96      0.95      2788
+    positive       0.97      0.97      0.97      2576
+
+    accuracy                           0.96      7972
+   macro avg       0.96      0.96      0.96      7972
+weighted avg       0.96      0.96      0.96      7972
+
+2026-08-30 03:31:49,067 | INFO     |    negative   P=0.955 R=0.947 F1=0.951  P−R=+0.007
+2026-08-30 03:31:49,067 | INFO     |    neutral    P=0.954 R=0.956 F1=0.955  P−R=-0.002
+2026-08-30 03:31:49,067 | INFO     |    positive   P=0.967 R=0.972 F1=0.970  P−R=-0.005
+2026-08-30 03:31:49,067 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 03:31:49,175 | INFO     |    [nhóm] phu_dinh     n=3528   acc=0.9484 f1_macro=0.9324
+2026-08-30 03:31:49,175 | INFO     |    [nhóm] hedge        n=850    acc=0.9824 f1_macro=0.7677
+2026-08-30 03:31:49,175 | INFO     |    [nhóm] trai_chieu   n=2359   acc=0.9534 f1_macro=0.9058
+2026-08-30 03:31:49,209 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7972) → reports/v40_probs/v40_test_seed_49.csv
+2026-08-30 03:31:49,242 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7971) → reports/v40_probs/v40_calib_seed_49.csv
+2026-08-30 03:32:00,192 | INFO     | 📁 Đã lưu models/production/v40/seed_49/v40_bundle.pkl  (154.17 MB, nén mức 3)
+2026-08-30 03:32:00,193 | INFO     | ⏱️  Tổng thời gian: 1373.1s
+2026-08-30 03:32:00,250 | INFO     | 
+########## [V40] SEED 9/10 = 50 ##########
+2026-08-30 03:32:00,250 | INFO     | ============================================================
+2026-08-30 03:32:00,250 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=50)
+2026-08-30 03:32:00,250 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 03:32:00,250 | INFO     | ============================================================
+2026-08-30 03:32:00,397 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 03:32:00,398 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 03:32:00,398 | INFO     | Tiền xử lý văn bản...
+2026-08-30 03:32:46,153 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 03:32:46,179 | INFO     | Train: 23933 | Calibration: 7987 | Test: 7970
+2026-08-30 03:32:50,240 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=50): +83 POS, +297 NEG trên 380 ứng viên → lexicon 653 mục.
+2026-08-30 03:32:50,240 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('nghị', -3.968, 202), ('trả', -3.338, 467), ('đổi', -3.07, 783), ('lum', -4.463, 49), ('tróc', -4.367, 51), ('tùm', -4.416, 47), ('vậy_mà', -4.44, 45), ('đề', -2.463, 395), ('ơn', 2.182, 719), ('nấy', -3.133, 96), ('gọn', 2.423, 328), ('nát', -3.342, 59), ('rớt', -2.957, 96), ('phù', 2.137, 541), ('đài', -3.41, 50), ('phản', -2.657, 144), ('chóng', 2.589, 163), ('yếu', -2.276, 320), ('chảy', -2.776, 110), ('khui', -2.983, 75)]
+2026-08-30 03:32:50,240 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 03:32:55,033 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.9% | Test = 96.9% (trước mở rộng: 79.5%) (ĐẠT)
+2026-08-30 03:32:55,033 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 03:34:20,556 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1297)
+2026-08-30 03:34:21,042 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 03:49:01,464 | INFO     | Best params: {'tfidf_max_feat': 70000, 'ngram_range': (1, 2), 'min_df': 2, 'lr_C': 97.11747440982646, 'sublinear_tf': False}
+2026-08-30 03:49:01,464 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9485  | trial bị cắt: 10/30
+2026-08-30 03:49:01,464 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 03:49:57,630 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 50.4s
+2026-08-30 03:50:48,624 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 51.0s
+2026-08-30 03:51:40,060 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 51.4s
+2026-08-30 03:52:31,028 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 51.0s
+2026-08-30 03:53:19,898 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 48.9s
+2026-08-30 03:53:19,899 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 03:53:20,153 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 03:53:20,153 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 03:53:25,287 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9575
+2026-08-30 03:53:28,089 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9588
+2026-08-30 03:53:32,285 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9588
+2026-08-30 03:53:36,790 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9589
+2026-08-30 03:53:43,089 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9586
+2026-08-30 03:53:43,090 | INFO     | Chọn C=5.0 với F1-CV(train)=0.9589
+2026-08-30 03:53:44,810 | INFO     | [CALIB-35] Temperature scaling: T=0.9632 | ECE(CV nội bộ trên Cal) 0.0141 → 0.0143 → LOẠI
+2026-08-30 03:53:58,941 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = -0.0005 ± 0.0005 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 03:53:58,941 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9615 → 0.9615 (bagging=15, co ngót λ=0.7)
+2026-08-30 03:53:58,941 | INFO     | Đánh giá trên tập Test...
+2026-08-30 03:53:58,958 | INFO     | ✅ F1-Macro TEST = 0.9571   (argmax thuần: 0.9571, Δ lớp quyết định = +0.0000)
+2026-08-30 03:53:58,958 | INFO     | ✅ Accuracy      = 0.9571   (argmax thuần: 0.9571)
+2026-08-30 03:53:58,958 | INFO     | ✅ ECE=0.0084 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0145 | ECE_cw=0.0092 | Brier=0.0652
+2026-08-30 03:53:58,965 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.95      0.95      2513
+     neutral       0.95      0.95      0.95      2846
+    positive       0.97      0.97      0.97      2611
+
+    accuracy                           0.96      7970
+   macro avg       0.96      0.96      0.96      7970
+weighted avg       0.96      0.96      0.96      7970
+
+2026-08-30 03:53:59,558 | INFO     |    negative   P=0.946 R=0.950 F1=0.948  P−R=-0.004
+2026-08-30 03:53:59,559 | INFO     |    neutral    P=0.955 R=0.954 F1=0.955  P−R=+0.001
+2026-08-30 03:53:59,559 | INFO     |    positive   P=0.970 R=0.967 F1=0.968  P−R=+0.003
+2026-08-30 03:53:59,559 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 03:53:59,664 | INFO     |    [nhóm] phu_dinh     n=3539   acc=0.9506 f1_macro=0.9346
+2026-08-30 03:53:59,664 | INFO     |    [nhóm] hedge        n=849    acc=0.9753 f1_macro=0.7601
+2026-08-30 03:53:59,664 | INFO     |    [nhóm] trai_chieu   n=2368   acc=0.9493 f1_macro=0.9065
+2026-08-30 03:53:59,697 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7970) → reports/v40_probs/v40_test_seed_50.csv
+2026-08-30 03:53:59,730 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7987) → reports/v40_probs/v40_calib_seed_50.csv
+2026-08-30 03:54:15,336 | INFO     | 📁 Đã lưu models/production/v40/seed_50/v40_bundle.pkl  (164.49 MB, nén mức 3)
+2026-08-30 03:54:15,336 | INFO     | ⏱️  Tổng thời gian: 1335.1s
+2026-08-30 03:54:15,425 | INFO     | 
+########## [V40] SEED 10/10 = 51 ##########
+2026-08-30 03:54:15,426 | INFO     | ============================================================
+2026-08-30 03:54:15,426 | INFO     | 🚀 BẮT ĐẦU HUẤN LUYỆN V40 (v40.4, seed=51)
+2026-08-30 03:54:15,426 | INFO     |    Config: BẬT=['normalize_lexicon', 'word_segment', 'apply_intensifier', 'keep_rating_tokens', 'quantile_scale', 'use_pos', 'normalize_tfidf', 'seed_lexicon', 'expand_lexicon', 'fix_elong', 'fix_tokenizer_sep', 'fix_rating_tfidf', 'fix_dead_columns', 'use_decision_layer', 'view_word', 'view_char', 'view_nbsvm', 'view_svd_lgbm', 'view_ordinal', 'meta_second_order', 'use_cluster_features', 'use_temperature', 'include_svm', 'include_lgbm'] | TẮT=[] | oof_mode=bagged
+2026-08-30 03:54:15,426 | INFO     | ============================================================
+2026-08-30 03:54:15,598 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative' 'neutral' 'positive']
+2026-08-30 03:54:15,598 | INFO     | [SEG-21] underthesea sẵn sàng (phân đoạn từ cho TF‑IDF, POS). Không tác động tới độ phủ lexicon — độ phủ do KÍCH THƯỚC LEXICON quyết định [LEX-47].
+2026-08-30 03:54:15,598 | INFO     | Tiền xử lý văn bản...
+2026-08-30 03:54:59,643 | INFO     | [SPLIT-16] Chia bằng StratifiedGroupKFold (1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-30 03:54:59,668 | INFO     | Train: 23950 | Calibration: 7969 | Test: 7971
+2026-08-30 03:55:03,677 | INFO     | [LEX-47] Mở rộng lexicon trên TRAIN (seed=51): +88 POS, +292 NEG trên 380 ứng viên → lexicon 653 mục.
+2026-08-30 03:55:03,677 | DEBUG    | [LEX-47] 20 mục điểm cao nhất: [('nghị', -3.938, 192), ('trả', -3.225, 479), ('đổi', -2.97, 803), ('lum', -4.414, 48), ('tróc', -4.313, 49), ('tùm', -4.339, 44), ('nát', -4.17, 48), ('rỉ', -4.138, 38), ('gọn', 2.55, 293), ('hoi', -3.429, 66), ('dám', -3.053, 90), ('đài', -3.429, 49), ('nhầm', -2.867, 103), ('ơn', 2.025, 682), ('đề', -2.189, 382), ('mở', -2.162, 411), ('phù', 2.007, 549), ('phản', -2.462, 164), ('vậy_mà', -3.315, 43), ('hư', -2.374, 195)]
+2026-08-30 03:55:03,677 | INFO     | Trích xuất manual lexicon features...
+2026-08-30 03:55:08,411 | INFO     | [DIAG-45] Độ phủ lexicon Train = 96.9% | Test = 96.6% (trước mở rộng: 79.7%) (ĐẠT)
+2026-08-30 03:55:08,411 | INFO     | Trích xuất POS features (4 tỉ lệ, trên văn bản đã chuẩn hoá)...
+2026-08-30 03:56:32,322 | INFO     | [FEAT-6][CAL-36] Ngưỡng neutral T tối ưu trên TRAIN: T=4.0 (MI=0.1270)
+2026-08-30 03:56:33,121 | INFO     | Tối ưu siêu tham số với Optuna (30 trials, có MedianPruner)...
+2026-08-30 04:10:52,186 | INFO     | Best params: {'tfidf_max_feat': 40000, 'ngram_range': (1, 2), 'min_df': 3, 'lr_C': 43.71485663528073, 'sublinear_tf': False}
+2026-08-30 04:10:52,187 | INFO     | Best CV F1 (proxy 1 LR, KHÔNG phải ước lượng hiệu năng — [OPT-38]): 0.9488  | trial bị cắt: 6/30
+2026-08-30 04:10:52,187 | INFO     | Tạo OOF 5 folds — multi-view [STACK-29], oof_mode='bagged' [STACK-30]...
+2026-08-30 04:11:47,488 | DEBUG    |   OOF fold 1/5: 5 view (word, char, nbsvm, ord, svd) — 49.4s
+2026-08-30 04:12:36,431 | DEBUG    |   OOF fold 2/5: 5 view (word, char, nbsvm, ord, svd) — 48.9s
+2026-08-30 04:13:25,122 | DEBUG    |   OOF fold 3/5: 5 view (word, char, nbsvm, ord, svd) — 48.7s
+2026-08-30 04:14:15,023 | DEBUG    |   OOF fold 4/5: 5 view (word, char, nbsvm, ord, svd) — 49.9s
+2026-08-30 04:15:05,145 | DEBUG    |   OOF fold 5/5: 5 view (word, char, nbsvm, ord, svd) — 50.1s
+2026-08-30 04:15:05,146 | INFO     |   Các view tham gia: ['word', 'char', 'nbsvm', 'ord', 'svd']
+2026-08-30 04:15:05,384 | INFO     |   Kích thước đầu vào meta: 50 cột (5 view × 3 lớp + bậc 2 + 4 cluster + 22 lexicon)
+2026-08-30 04:15:05,384 | INFO     | Chọn C của meta-learner bằng CV group-aware trên TRAIN ([CAL-36])...
+2026-08-30 04:15:10,166 | DEBUG    |   C=0.01   → F1-macro CV(train) = 0.9557
+2026-08-30 04:15:12,987 | DEBUG    |   C=0.1    → F1-macro CV(train) = 0.9575
+2026-08-30 04:15:16,959 | DEBUG    |   C=1.0    → F1-macro CV(train) = 0.9576
+2026-08-30 04:15:21,084 | DEBUG    |   C=5.0    → F1-macro CV(train) = 0.9576
+2026-08-30 04:15:25,677 | DEBUG    |   C=10.0   → F1-macro CV(train) = 0.9575
+2026-08-30 04:15:25,678 | INFO     | Chọn C=1.0 với F1-CV(train)=0.9576
+2026-08-30 04:15:27,501 | INFO     | [CALIB-35] Temperature scaling: T=1.0067 | ECE(CV nội bộ trên Cal) 0.0159 → 0.0160 → LOẠI
+2026-08-30 04:15:41,021 | INFO     | [DECIDE-28] ΔF1 giữ-riêng (CV trên Cal) = -0.0005 ± 0.0002 (SE) → tiêu chí mean−2·SE > 0 → LOẠI (không đủ bằng chứng)
+2026-08-30 04:15:41,021 | INFO     | [DECIDE-28] w=[1. 1. 1.] | F1-Cal 0.9579 → 0.9579 (bagging=15, co ngót λ=0.7)
+2026-08-30 04:15:41,021 | INFO     | Đánh giá trên tập Test...
+2026-08-30 04:15:41,037 | INFO     | ✅ F1-Macro TEST = 0.9593   (argmax thuần: 0.9593, Δ lớp quyết định = +0.0000)
+2026-08-30 04:15:41,038 | INFO     | ✅ Accuracy      = 0.9591   (argmax thuần: 0.9591)
+2026-08-30 04:15:41,038 | INFO     | ✅ ECE=0.0052 (bin đều, so sánh được với bảng cũ) | ECE_em=0.0121 | ECE_cw=0.0085 | Brier=0.0638
+2026-08-30 04:15:41,045 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.95      0.95      2656
+     neutral       0.96      0.96      0.96      2777
+    positive       0.97      0.97      0.97      2538
+
+    accuracy                           0.96      7971
+   macro avg       0.96      0.96      0.96      7971
+weighted avg       0.96      0.96      0.96      7971
+
+2026-08-30 04:15:41,330 | INFO     |    negative   P=0.955 R=0.953 F1=0.954  P−R=+0.003
+2026-08-30 04:15:41,330 | INFO     |    neutral    P=0.956 R=0.955 F1=0.956  P−R=+0.000
+2026-08-30 04:15:41,330 | INFO     |    positive   P=0.967 R=0.970 F1=0.969  P−R=-0.003
+2026-08-30 04:15:41,330 | INFO     | Phân tích lỗi theo nhóm hiện tượng ngôn ngữ...
+2026-08-30 04:15:41,438 | INFO     |    [nhóm] phu_dinh     n=3533   acc=0.9539 f1_macro=0.9370
+2026-08-30 04:15:41,438 | INFO     |    [nhóm] hedge        n=826    acc=0.9770 f1_macro=0.7473
+2026-08-30 04:15:41,438 | INFO     |    [nhóm] trai_chieu   n=2353   acc=0.9558 f1_macro=0.9221
+2026-08-30 04:15:41,474 | INFO     | 💾 [V50 #1] Đã lưu xác suất test (n=7971) → reports/v40_probs/v40_test_seed_51.csv
+2026-08-30 04:15:41,508 | INFO     | 💾 [V50 #1] Đã lưu xác suất calib (n=7969) → reports/v40_probs/v40_calib_seed_51.csv
+2026-08-30 04:15:54,072 | INFO     | 📁 Đã lưu models/production/v40/seed_51/v40_bundle.pkl  (157.39 MB, nén mức 3)
+2026-08-30 04:15:54,072 | INFO     | ⏱️  Tổng thời gian: 1298.6s
+2026-08-30 04:15:54,133 | INFO     | ============================================================
+2026-08-30 04:15:54,133 | INFO     | ✅ V40 (v40.4) — qua 10 seed:
+2026-08-30 04:15:54,134 | INFO     |    f1_comparable           : 0.9586 ± 0.0017
+2026-08-30 04:15:54,134 | INFO     |    f1                      : 0.9586 ± 0.0018
+2026-08-30 04:15:54,134 | INFO     |    accuracy                : 0.9585 ± 0.0018
+2026-08-30 04:15:54,134 | INFO     |    f1_argmax               : 0.9586 ± 0.0017
+2026-08-30 04:15:54,134 | INFO     |    delta_decision_layer    : -0.0001 ± 0.0002
+2026-08-30 04:15:54,134 | INFO     |    ece                     : 0.0071 ± 0.0014
+2026-08-30 04:15:54,134 | INFO     |    ece_em                  : 0.0136 ± 0.0011
+2026-08-30 04:15:54,134 | INFO     |    ece_cw                  : 0.0083 ± 0.0010
+2026-08-30 04:15:54,134 | INFO     |    brier                   : 0.0647 ± 0.0023
+2026-08-30 04:15:54,134 | INFO     |    training_time_sec       : 1308.8792 ± 33.3534
+2026-08-30 04:15:54,134 | INFO     |    model_size_mb           : 159.3552 ± 3.2638
+2026-08-30 04:15:54,134 | INFO     |    lexicon_coverage_train  : 0.9679 ± 0.0017
+2026-08-30 04:15:54,134 | INFO     |    lexicon_coverage_test   : 0.9683 ± 0.0029
+2026-08-30 04:15:54,134 | INFO     |    lexicon_coverage_before_expand: 0.7943 ± 0.0017
+2026-08-30 04:15:54,134 | INFO     |    lexicon_size            : 654.2000 ± 6.9541
+2026-08-30 04:15:54,135 | INFO     | 📁 Đã lưu results_v40_multiseed.json
+2026-08-30 04:15:54,135 | INFO     | ============================================================
+2026-08-30 04:15:54,135 | INFO     | 🔁 [V50 #4] KIỂM TRA TÁI LẬP so với lần chạy trước:
+2026-08-30 04:15:54,135 | INFO     |      seed 42: cũ 0.961184 → mới 0.961184  Δ=+0.000000
+2026-08-30 04:15:54,135 | INFO     |      seed 43: cũ 0.958059 → mới 0.958059  Δ=+0.000000
+2026-08-30 04:15:54,135 | INFO     |      seed 44: cũ 0.959743 → mới 0.959743  Δ=+0.000000
+2026-08-30 04:15:54,135 | INFO     |      seed 45: cũ 0.956917 → mới 0.956917  Δ=+0.000000
+2026-08-30 04:15:54,135 | INFO     |      seed 46: cũ 0.955910 → mới 0.955910  Δ=+0.000000
+2026-08-30 04:15:54,135 | INFO     |      seed 47: cũ 0.961324 → mới 0.961324  Δ=+0.000000
+2026-08-30 04:15:54,136 | INFO     |      seed 48: cũ 0.958248 → mới 0.958248  Δ=+0.000000
+2026-08-30 04:15:54,136 | INFO     |      seed 49: cũ 0.958591 → mới 0.958591  Δ=+0.000000
+2026-08-30 04:15:54,136 | INFO     |      seed 50: cũ 0.957063 → mới 0.957063  Δ=+0.000000
+2026-08-30 04:15:54,136 | INFO     |      seed 51: cũ 0.959288 → mới 0.959288  Δ=+0.000000
+2026-08-30 04:15:54,136 | INFO     |    ✓ Cả 10/10 seed tái lập khớp — tệp xác suất mới dùng chung được với bảng so sánh hiện có.
+2026-08-30 04:15:54,136 | INFO     | ────────────────────────────────────────────────────────────
+2026-08-30 04:15:54,136 | INFO     |    Seed có 'subgroup_results' : 10/10  ✓
+2026-08-30 04:15:54,136 | INFO     |    Tệp xác suất test          : 10/10  ✓
+2026-08-30 04:15:54,136 | INFO     |    Độ lệch chuẩn f1_comparable: 0.0017  ✓
+2026-08-30 04:15:54,136 | INFO     | 
+2026-08-30 04:15:54,136 | INFO     | ⚠️  TRƯỚC KHI ĐÓNG PHIÊN KAGGLE, lưu lại:
+2026-08-30 04:15:54,137 | INFO     |       • results_v40_multiseed.json
+2026-08-30 04:15:54,137 | INFO     |       • split_fingerprints.json
+2026-08-30 04:15:54,137 | INFO     |       • reports/v40_probs/        ← xác suất per-sample
+2026-08-30 04:15:54,137 | INFO     |       • models/production/v40/    ← cần cho gold test ở bước sau
+2026-08-30 04:15:54,137 | INFO     | ============================================================

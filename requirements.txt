@@ -1,0 +1,15 @@
+# Python 3.10+ (đã chạy trên 3.12). Phiên bản chính xác của lần chạy được ghi trong
+# results/results_v40_multiseed.json (khoá lib_versions nếu có) và nhật ký trong logs/.
+numpy
+pandas
+scipy
+scikit-learn
+lightgbm
+optuna
+joblib
+matplotlib
+seaborn
+underthesea
+torch
+transformers
+accelerate

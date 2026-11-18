@@ -1,0 +1,1125 @@
+{
+  "version": "v40",
+  "subversion": "v40.4",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "group_col": "near_dup_group_id",
+  "n_trials": 30,
+  "config": {
+    "normalize_lexicon": true,
+    "word_segment": true,
+    "apply_intensifier": true,
+    "keep_rating_tokens": true,
+    "quantile_scale": true,
+    "use_pos": true,
+    "normalize_tfidf": true,
+    "seed_lexicon": true,
+    "expand_lexicon": true,
+    "lex_expand_top_k": 400,
+    "lex_expand_min_df": 30,
+    "lex_expand_min_logodds": 0.9,
+    "fix_elong": true,
+    "fix_tokenizer_sep": true,
+    "fix_rating_tfidf": true,
+    "fix_dead_columns": true,
+    "intensifier_max_gap": 2,
+    "use_decision_layer": true,
+    "view_word": true,
+    "view_char": true,
+    "view_nbsvm": true,
+    "view_svd_lgbm": true,
+    "view_ordinal": true,
+    "oof_mode": "bagged",
+    "meta_second_order": true,
+    "use_cluster_features": true,
+    "use_temperature": true,
+    "char_ngram": [
+      2,
+      4
+    ],
+    "char_min_df": 3,
+    "char_max_features": 60000,
+    "svd_components": 200,
+    "decision_bags": 15,
+    "decision_shrink": 0.7,
+    "decision_w_max": 1.5,
+    "include_svm": true,
+    "include_lgbm": true
+  },
+  "metrics_by_seed": {
+    "42": {
+      "f1_comparable": 0.9611839281453362,
+      "f1": 0.9611839281453362,
+      "accuracy": 0.9611626158857429,
+      "f1_argmax": 0.9611839281453362,
+      "accuracy_argmax": 0.9611626158857429,
+      "delta_decision_layer": 0.0,
+      "ece": 0.008535322447036486,
+      "ece_em": 0.014510702090545669,
+      "ece_cw": 0.009833909461041911,
+      "brier": 0.061542962330340366,
+      "training_time_sec": 1246.4024968147278,
+      "model_size_mb": 157.93220329284668,
+      "best_params": {
+        "tfidf_max_feat": 30000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 3,
+        "lr_C": 29.836379021969236,
+        "sublinear_tf": true
+      },
+      "meta_C": 0.1,
+      "meta_f1_cv_train": 0.9592610358996402,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.13069372076439217,
+      "lexicon_coverage_train": 0.9679428237064281,
+      "lexicon_coverage_test": 0.9666750187922827,
+      "lexicon_coverage_before_expand": 0.7969990804982028,
+      "lexicon_size": 645,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": 2.145039500884849e-05,
+      "decision_cv_se": 0.0005280189826203609,
+      "f1_cal_raw": 0.9547027150009052,
+      "ece_cal_raw": 0.009404193099276792,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9569976544175137,
+          "recall": 0.9506796116504854,
+          "f1": 0.9538281706604325,
+          "support": 2575,
+          "p_minus_r": 0.006318042767028298
+        },
+        "neutral": {
+          "precision": 0.9555792466240227,
+          "recall": 0.9617310443490701,
+          "f1": 0.9586452762923351,
+          "support": 2796,
+          "p_minus_r": -0.00615179772504737
+        },
+        "positive": {
+          "precision": 0.9712643678160919,
+          "recall": 0.9708923783990808,
+          "f1": 0.9710783374832408,
+          "support": 2611,
+          "p_minus_r": 0.0003719894170111093
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3510,
+          "accuracy": 0.9515669515669516,
+          "f1_macro": 0.9327223591069856
+        },
+        "hedge": {
+          "n": 829,
+          "accuracy": 0.9722557297949337,
+          "f1_macro": 0.6757787373842135
+        },
+        "trai_chieu": {
+          "n": 2342,
+          "accuracy": 0.9530315969257045,
+          "f1_macro": 0.9081379400832846
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "43": {
+      "f1_comparable": 0.9580593114423972,
+      "f1": 0.9580593114423972,
+      "accuracy": 0.9579989969909729,
+      "f1_argmax": 0.9580593114423972,
+      "accuracy_argmax": 0.9579989969909729,
+      "delta_decision_layer": 0.0,
+      "ece": 0.00782540640324152,
+      "ece_em": 0.014450885709124603,
+      "ece_cw": 0.008495072080795975,
+      "brier": 0.06466705556224388,
+      "training_time_sec": 1311.5965387821198,
+      "model_size_mb": 157.88960552215576,
+      "best_params": {
+        "tfidf_max_feat": 50000,
+        "ngram_range": [
+          1,
+          3
+        ],
+        "min_df": 3,
+        "lr_C": 97.14138931607431,
+        "sublinear_tf": false
+      },
+      "meta_C": 0.1,
+      "meta_f1_cv_train": 0.9582971781974253,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.13348313921702418,
+      "lexicon_coverage_train": 0.9670219435736677,
+      "lexicon_coverage_test": 0.9675275827482447,
+      "lexicon_coverage_before_expand": 0.792183908045977,
+      "lexicon_size": 670,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": 0.0006271373234606914,
+      "decision_cv_se": 0.000393339152243425,
+      "f1_cal_raw": 0.958704389332691,
+      "ece_cal_raw": 0.011089018202286343,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9468325791855203,
+          "recall": 0.9551160136934196,
+          "f1": 0.9509562582844159,
+          "support": 2629,
+          "p_minus_r": -0.008283434507899257
+        },
+        "neutral": {
+          "precision": 0.9570861882437793,
+          "recall": 0.9595083152566883,
+          "f1": 0.9582957212493229,
+          "support": 2766,
+          "p_minus_r": -0.0024221270129090033
+        },
+        "positive": {
+          "precision": 0.9705997647981184,
+          "recall": 0.9593180937621077,
+          "f1": 0.9649259547934529,
+          "support": 2581,
+          "p_minus_r": 0.011281671036010632
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3621,
+          "accuracy": 0.9489091411212373,
+          "f1_macro": 0.9285171684422492
+        },
+        "hedge": {
+          "n": 859,
+          "accuracy": 0.9732246798603027,
+          "f1_macro": 0.7082438280252794
+        },
+        "trai_chieu": {
+          "n": 2294,
+          "accuracy": 0.9455100261551874,
+          "f1_macro": 0.8918859975648443
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "44": {
+      "f1_comparable": 0.9597425994923778,
+      "f1": 0.9597425994923778,
+      "accuracy": 0.9597441685477803,
+      "f1_argmax": 0.9597425994923778,
+      "accuracy_argmax": 0.9597441685477803,
+      "delta_decision_layer": 0.0,
+      "ece": 0.006867904986348751,
+      "ece_em": 0.013938937347793253,
+      "ece_cw": 0.008687922608288197,
+      "brier": 0.06318167905682559,
+      "training_time_sec": 1293.4615452289581,
+      "model_size_mb": 157.34161758422852,
+      "best_params": {
+        "tfidf_max_feat": 20000,
+        "ngram_range": [
+          1,
+          3
+        ],
+        "min_df": 3,
+        "lr_C": 25.893492801758683,
+        "sublinear_tf": false
+      },
+      "meta_C": 0.1,
+      "meta_f1_cv_train": 0.9594882986786041,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.12881221556920627,
+      "lexicon_coverage_train": 0.9695032794418682,
+      "lexicon_coverage_test": 0.9677702533233007,
+      "lexicon_coverage_before_expand": 0.7946693403517567,
+      "lexicon_size": 655,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": -0.0008935540396818542,
+      "decision_cv_se": 0.00032720339618291366,
+      "f1_cal_raw": 0.9578556115165613,
+      "ece_cal_raw": 0.007224888221293067,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.947633824670287,
+          "recall": 0.9587912087912088,
+          "f1": 0.9531798673429575,
+          "support": 2548,
+          "p_minus_r": -0.01115738412092182
+        },
+        "neutral": {
+          "precision": 0.9556984637370489,
+          "recall": 0.9598134194474345,
+          "f1": 0.9577515216612961,
+          "support": 2787,
+          "p_minus_r": -0.004114955710385559
+        },
+        "positive": {
+          "precision": 0.9761262995764344,
+          "recall": 0.9605911330049262,
+          "f1": 0.9682964094728801,
+          "support": 2639,
+          "p_minus_r": 0.015535166571508219
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3540,
+          "accuracy": 0.9491525423728814,
+          "f1_macro": 0.9295812303756922
+        },
+        "hedge": {
+          "n": 864,
+          "accuracy": 0.9791666666666666,
+          "f1_macro": 0.6735892897990633
+        },
+        "trai_chieu": {
+          "n": 2346,
+          "accuracy": 0.9522591645353794,
+          "f1_macro": 0.9099338614733284
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "45": {
+      "f1_comparable": 0.9569168988338047,
+      "f1": 0.9569168988338047,
+      "accuracy": 0.9568381430363865,
+      "f1_argmax": 0.9569168988338047,
+      "accuracy_argmax": 0.9568381430363865,
+      "delta_decision_layer": 0.0,
+      "ece": 0.008329227663709962,
+      "ece_em": 0.013999760131378344,
+      "ece_cw": 0.008197471437513877,
+      "brier": 0.0687089479679272,
+      "training_time_sec": 1268.7017788887024,
+      "model_size_mb": 158.08342742919922,
+      "best_params": {
+        "tfidf_max_feat": 40000,
+        "ngram_range": [
+          1,
+          3
+        ],
+        "min_df": 3,
+        "lr_C": 98.06423941369451,
+        "sublinear_tf": true
+      },
+      "meta_C": 1.0,
+      "meta_f1_cv_train": 0.959279776564742,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.13136453972468248,
+      "lexicon_coverage_train": 0.9689640768588137,
+      "lexicon_coverage_test": 0.9700125470514429,
+      "lexicon_coverage_before_expand": 0.7941102756892231,
+      "lexicon_size": 650,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": 0.00023962603282545736,
+      "decision_cv_se": 0.0004999171366008235,
+      "f1_cal_raw": 0.9622255539686062,
+      "ece_cal_raw": 0.004200181005027745,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9466357308584686,
+          "recall": 0.9532710280373832,
+          "f1": 0.9499417927823051,
+          "support": 2568,
+          "p_minus_r": -0.006635297178914534
+        },
+        "neutral": {
+          "precision": 0.9516413695728909,
+          "recall": 0.9577264653641208,
+          "f1": 0.9546742209631728,
+          "support": 2815,
+          "p_minus_r": -0.006085095791229844
+        },
+        "positive": {
+          "precision": 0.9729517836142689,
+          "recall": 0.9594124468496328,
+          "f1": 0.9661346827559362,
+          "support": 2587,
+          "p_minus_r": 0.013539336764636145
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3498,
+          "accuracy": 0.9471126357918811,
+          "f1_macro": 0.9254376047142397
+        },
+        "hedge": {
+          "n": 843,
+          "accuracy": 0.9762752075919335,
+          "f1_macro": 0.5970926744122621
+        },
+        "trai_chieu": {
+          "n": 2404,
+          "accuracy": 0.9513311148086523,
+          "f1_macro": 0.910283262488563
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "46": {
+      "f1_comparable": 0.9559102359888331,
+      "f1": 0.9552618709040749,
+      "accuracy": 0.9551676503830214,
+      "f1_argmax": 0.9559102359888331,
+      "accuracy_argmax": 0.9557955544392817,
+      "delta_decision_layer": -0.0006483650847581846,
+      "ece": 0.007904187522027928,
+      "ece_em": 0.014520734084577358,
+      "ece_cw": 0.008564159539310483,
+      "brier": 0.06818061182470825,
+      "training_time_sec": 1322.1418194770813,
+      "model_size_mb": 158.70281505584717,
+      "best_params": {
+        "tfidf_max_feat": 30000,
+        "ngram_range": [
+          1,
+          3
+        ],
+        "min_df": 3,
+        "lr_C": 44.23534193516394,
+        "sublinear_tf": false
+      },
+      "meta_C": 5.0,
+      "meta_f1_cv_train": 0.9595989324320392,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.13781698499703499,
+      "lexicon_coverage_train": 0.9636963696369637,
+      "lexicon_coverage_test": 0.9624513374356398,
+      "lexicon_coverage_before_expand": 0.7940844717383131,
+      "lexicon_size": 646,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.5,
+        1.5
+      ],
+      "decision_applied": true,
+      "decision_cv_gain": 0.0012296551700379465,
+      "decision_cv_se": 0.0003958142100959949,
+      "f1_cal_raw": 0.9585023511959516,
+      "ece_cal_raw": 0.010389909674200622,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9565557729941292,
+          "recall": 0.9385560675883257,
+          "f1": 0.9474704400077535,
+          "support": 2604,
+          "p_minus_r": 0.017999705405803534
+        },
+        "neutral": {
+          "precision": 0.9410511363636364,
+          "recall": 0.9604929322218195,
+          "f1": 0.9506726457399103,
+          "support": 2759,
+          "p_minus_r": -0.019441795858183175
+        },
+        "positive": {
+          "precision": 0.9691358024691358,
+          "recall": 0.9661538461538461,
+          "f1": 0.9676425269645609,
+          "support": 2600,
+          "p_minus_r": 0.0029819563152896356
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3526,
+          "accuracy": 0.9441293250141803,
+          "f1_macro": 0.926734060846703
+        },
+        "hedge": {
+          "n": 855,
+          "accuracy": 0.9672514619883041,
+          "f1_macro": 0.6469705493215161
+        },
+        "trai_chieu": {
+          "n": 2354,
+          "accuracy": 0.9422259983007647,
+          "f1_macro": 0.8899105824220624
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "47": {
+      "f1_comparable": 0.9613242133466104,
+      "f1": 0.9613242133466104,
+      "accuracy": 0.961128526645768,
+      "f1_argmax": 0.9613242133466104,
+      "accuracy_argmax": 0.961128526645768,
+      "delta_decision_layer": 0.0,
+      "ece": 0.004158850514932174,
+      "ece_em": 0.012555795451084671,
+      "ece_cw": 0.006925946123853323,
+      "brier": 0.06206032401788875,
+      "training_time_sec": 1315.7138376235962,
+      "model_size_mb": 163.74993324279785,
+      "best_params": {
+        "tfidf_max_feat": 80000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "lr_C": 47.11463622066365,
+        "sublinear_tf": false
+      },
+      "meta_C": 10.0,
+      "meta_f1_cv_train": 0.9582555932434511,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.12796563429452443,
+      "lexicon_coverage_train": 0.966326871657754,
+      "lexicon_coverage_test": 0.968526645768025,
+      "lexicon_coverage_before_expand": 0.7950785427807486,
+      "lexicon_size": 654,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": -2.648930674364891e-06,
+      "decision_cv_se": 0.00020505164320807468,
+      "f1_cal_raw": 0.959475850981598,
+      "ece_cal_raw": 0.006219952964826186,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9565217391304348,
+          "recall": 0.9539524174980814,
+          "f1": 0.9552353506243996,
+          "support": 2606,
+          "p_minus_r": 0.0025693216323534607
+        },
+        "neutral": {
+          "precision": 0.9497907949790795,
+          "recall": 0.9659574468085106,
+          "f1": 0.9578059071729957,
+          "support": 2820,
+          "p_minus_r": -0.01616665182943111
+        },
+        "positive": {
+          "precision": 0.9788676236044657,
+          "recall": 0.9631227932522558,
+          "f1": 0.9709313822424362,
+          "support": 2549,
+          "p_minus_r": 0.01574483035220986
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3536,
+          "accuracy": 0.9524886877828054,
+          "f1_macro": 0.93611079106452
+        },
+        "hedge": {
+          "n": 866,
+          "accuracy": 0.9815242494226328,
+          "f1_macro": 0.7091136392049006
+        },
+        "trai_chieu": {
+          "n": 2430,
+          "accuracy": 0.9522633744855967,
+          "f1_macro": 0.9057898723891805
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "48": {
+      "f1_comparable": 0.9582481387749465,
+      "f1": 0.9582481387749465,
+      "accuracy": 0.9582759052750282,
+      "f1_argmax": 0.9582481387749465,
+      "accuracy_argmax": 0.9582759052750282,
+      "delta_decision_layer": 0.0,
+      "ece": 0.005853784550112412,
+      "ece_em": 0.014124494102649345,
+      "ece_cw": 0.008943509198169717,
+      "brier": 0.06605820679630715,
+      "training_time_sec": 1323.9773972034454,
+      "model_size_mb": 163.80424213409424,
+      "best_params": {
+        "tfidf_max_feat": 70000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "lr_C": 92.87241197290142,
+        "sublinear_tf": true
+      },
+      "meta_C": 1.0,
+      "meta_f1_cv_train": 0.9588822927846987,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.13134662124759217,
+      "lexicon_coverage_train": 0.9684430512016718,
+      "lexicon_coverage_test": 0.9721839368500188,
+      "lexicon_coverage_before_expand": 0.7933124346917451,
+      "lexicon_size": 654,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": 0.0001330270543736578,
+      "decision_cv_se": 0.00022890857432434752,
+      "f1_cal_raw": 0.9595207666274671,
+      "ece_cal_raw": 0.008204902401042522,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9520093640265314,
+          "recall": 0.946837407838572,
+          "f1": 0.9494163424124513,
+          "support": 2577,
+          "p_minus_r": 0.005171956187959403
+        },
+        "neutral": {
+          "precision": 0.9507548526240115,
+          "recall": 0.9593761334784185,
+          "f1": 0.9550460371908287,
+          "support": 2757,
+          "p_minus_r": -0.008621280854407054
+        },
+        "positive": {
+          "precision": 0.9723065250379362,
+          "recall": 0.9682659614658103,
+          "f1": 0.9702820367215598,
+          "support": 2647,
+          "p_minus_r": 0.004040563572125899
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3526,
+          "accuracy": 0.946965399886557,
+          "f1_macro": 0.9293477736895518
+        },
+        "hedge": {
+          "n": 829,
+          "accuracy": 0.97708082026538,
+          "f1_macro": 0.7416343803330104
+        },
+        "trai_chieu": {
+          "n": 2368,
+          "accuracy": 0.9505912162162162,
+          "f1_macro": 0.9033646249963195
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "49": {
+      "f1_comparable": 0.9585912297175433,
+      "f1": 0.9585912297175433,
+      "accuracy": 0.9584796788760662,
+      "f1_argmax": 0.9585912297175433,
+      "accuracy_argmax": 0.9584796788760662,
+      "delta_decision_layer": 0.0,
+      "ece": 0.007749097379020913,
+      "ece_em": 0.011557023910391984,
+      "ece_cw": 0.0060017829052447305,
+      "brier": 0.06398607721916252,
+      "training_time_sec": 1373.0645406246185,
+      "model_size_mb": 154.16867446899414,
+      "best_params": {
+        "tfidf_max_feat": 70000,
+        "ngram_range": [
+          1,
+          3
+        ],
+        "min_df": 5,
+        "lr_C": 15.897301098457595,
+        "sublinear_tf": true
+      },
+      "meta_C": 5.0,
+      "meta_f1_cv_train": 0.9593157042509666,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.1318741353520114,
+      "lexicon_coverage_train": 0.9688896312690525,
+      "lexicon_coverage_test": 0.9731560461615655,
+      "lexicon_coverage_before_expand": 0.7912890967553347,
+      "lexicon_size": 662,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": -0.00014326992381037408,
+      "decision_cv_se": 0.0001265488493061084,
+      "f1_cal_raw": 0.9598181260244042,
+      "ece_cal_raw": 0.004663381962232546,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9547913446676971,
+          "recall": 0.9474693251533742,
+          "f1": 0.9511162432640493,
+          "support": 2608,
+          "p_minus_r": 0.007322019514322875
+        },
+        "neutral": {
+          "precision": 0.9538296349319971,
+          "recall": 0.9558823529411765,
+          "f1": 0.9548548907201719,
+          "support": 2788,
+          "p_minus_r": -0.0020527180091793884
+        },
+        "positive": {
+          "precision": 0.9671814671814671,
+          "recall": 0.9724378881987578,
+          "f1": 0.9698025551684089,
+          "support": 2576,
+          "p_minus_r": -0.0052564210172906245
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3528,
+          "accuracy": 0.9484126984126984,
+          "f1_macro": 0.9323782190587949
+        },
+        "hedge": {
+          "n": 850,
+          "accuracy": 0.9823529411764705,
+          "f1_macro": 0.7677473110134828
+        },
+        "trai_chieu": {
+          "n": 2359,
+          "accuracy": 0.9533700720644341,
+          "f1_macro": 0.9058497204557572
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "50": {
+      "f1_comparable": 0.9570630319640778,
+      "f1": 0.9570630319640778,
+      "accuracy": 0.9570890840652446,
+      "f1_argmax": 0.9570630319640778,
+      "accuracy_argmax": 0.9570890840652446,
+      "delta_decision_layer": 0.0,
+      "ece": 0.00844321951779519,
+      "ece_em": 0.014538749569430211,
+      "ece_cw": 0.009187085323608684,
+      "brier": 0.06520472415823987,
+      "training_time_sec": 1335.085925579071,
+      "model_size_mb": 164.491042137146,
+      "best_params": {
+        "tfidf_max_feat": 70000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "lr_C": 97.11747440982646,
+        "sublinear_tf": false
+      },
+      "meta_C": 5.0,
+      "meta_f1_cv_train": 0.9589381759423911,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.12968290759421983,
+      "lexicon_coverage_train": 0.9690385659967409,
+      "lexicon_coverage_test": 0.9686323713927227,
+      "lexicon_coverage_before_expand": 0.7946768060836502,
+      "lexicon_size": 653,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": -0.0005001529052647946,
+      "decision_cv_se": 0.0005380966094123856,
+      "f1_cal_raw": 0.9614991384647306,
+      "ece_cal_raw": 0.005631155381181617,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9461172741679873,
+          "recall": 0.9502586549940311,
+          "f1": 0.9481834425253127,
+          "support": 2513,
+          "p_minus_r": -0.004141380826043761
+        },
+        "neutral": {
+          "precision": 0.9549929676511955,
+          "recall": 0.9543218552354181,
+          "f1": 0.9546572934973638,
+          "support": 2846,
+          "p_minus_r": 0.0006711124157773307
+        },
+        "positive": {
+          "precision": 0.9700230591852421,
+          "recall": 0.9666794331673688,
+          "f1": 0.9683483598695569,
+          "support": 2611,
+          "p_minus_r": 0.0033436260178733024
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3539,
+          "accuracy": 0.9505510031082227,
+          "f1_macro": 0.934609381287189
+        },
+        "hedge": {
+          "n": 849,
+          "accuracy": 0.9752650176678446,
+          "f1_macro": 0.7600870209906448
+        },
+        "trai_chieu": {
+          "n": 2368,
+          "accuracy": 0.9493243243243243,
+          "f1_macro": 0.9065096096556777
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    },
+    "51": {
+      "f1_comparable": 0.9592884700539422,
+      "f1": 0.9592884700539422,
+      "accuracy": 0.9591017438213524,
+      "f1_argmax": 0.9592884700539422,
+      "accuracy_argmax": 0.9591017438213524,
+      "delta_decision_layer": 0.0,
+      "ece": 0.005228060959599046,
+      "ece_em": 0.012076698934269051,
+      "ece_cw": 0.008460615556449644,
+      "brier": 0.06379876009496016,
+      "training_time_sec": 1298.6462502479553,
+      "model_size_mb": 157.38824844360352,
+      "best_params": {
+        "tfidf_max_feat": 40000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 3,
+        "lr_C": 43.71485663528073,
+        "sublinear_tf": false
+      },
+      "meta_C": 1.0,
+      "meta_f1_cv_train": 0.9576142641787713,
+      "neutral_threshold_T": 4.0,
+      "neutral_threshold_mi": 0.12696677097867712,
+      "lexicon_coverage_train": 0.9689770354906054,
+      "lexicon_coverage_test": 0.9658763015932756,
+      "lexicon_coverage_before_expand": 0.797035490605428,
+      "lexicon_size": 653,
+      "temperature_applied": false,
+      "temperature_T": 1.0,
+      "decision_weights": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "decision_applied": false,
+      "decision_cv_gain": -0.0004963771894695545,
+      "decision_cv_se": 0.00022914641943486052,
+      "f1_cal_raw": 0.9579258598599875,
+      "ece_cal_raw": 0.0071171924929013695,
+      "view_names": [
+        "word",
+        "char",
+        "nbsvm",
+        "ord",
+        "svd"
+      ],
+      "per_class": {
+        "negative": {
+          "precision": 0.9550773876934693,
+          "recall": 0.9525602409638554,
+          "f1": 0.9538171536286523,
+          "support": 2656,
+          "p_minus_r": 0.002517146729613895
+        },
+        "neutral": {
+          "precision": 0.9556916426512968,
+          "recall": 0.9553474972992438,
+          "f1": 0.9555195389879344,
+          "support": 2777,
+          "p_minus_r": 0.00034414535205296026
+        },
+        "positive": {
+          "precision": 0.96700706991359,
+          "recall": 0.9700551615445232,
+          "f1": 0.96852871754524,
+          "support": 2538,
+          "p_minus_r": -0.003048091630933225
+        }
+      },
+      "subgroup_results": {
+        "phu_dinh": {
+          "n": 3533,
+          "accuracy": 0.9538635720350976,
+          "f1_macro": 0.9369638001092414
+        },
+        "hedge": {
+          "n": 826,
+          "accuracy": 0.9769975786924939,
+          "f1_macro": 0.7473181356493779
+        },
+        "trai_chieu": {
+          "n": 2353,
+          "accuracy": 0.9558011049723757,
+          "f1_macro": 0.922138003638477
+        }
+      },
+      "lib_versions": {
+        "sklearn": "1.6.1",
+        "numpy": "2.0.2",
+        "scipy": "1.16.3",
+        "lightgbm": "4.6.0",
+        "optuna": "4.9.0",
+        "python": "3.12.13"
+      },
+      "subversion": "v40.4"
+    }
+  },
+  "summary": {
+    "f1_comparable": {
+      "mean": 0.9586328057759868,
+      "std": 0.0016944894073030801
+    },
+    "f1": {
+      "mean": 0.9585679692675111,
+      "std": 0.0018061484283153405
+    },
+    "accuracy": {
+      "mean": 0.9584986513527364,
+      "std": 0.0017907358883145486
+    },
+    "f1_argmax": {
+      "mean": 0.9586328057759868,
+      "std": 0.0016944894073030801
+    },
+    "delta_decision_layer": {
+      "mean": -6.483650847581846e-05,
+      "std": 0.00019450952542745533
+    },
+    "ece": {
+      "mean": 0.007089506194382439,
+      "std": 0.0014397911371067864
+    },
+    "ece_em": {
+      "mean": 0.013627378133124448,
+      "std": 0.0010681400894178678
+    },
+    "ece_cw": {
+      "mean": 0.008329747423427654,
+      "std": 0.001049261943623854
+    },
+    "brier": {
+      "mean": 0.06473893490286038,
+      "std": 0.0022546333284764043
+    },
+    "training_time_sec": {
+      "mean": 1308.8792130470276,
+      "std": 33.353380937599205
+    },
+    "model_size_mb": {
+      "mean": 159.3551809310913,
+      "std": 3.263799759232971
+    },
+    "lexicon_coverage_train": {
+      "mean": 0.9678803648833565,
+      "std": 0.001683673951609397
+    },
+    "lexicon_coverage_test": {
+      "mean": 0.968281204111652,
+      "std": 0.002921579453146787
+    },
+    "lexicon_coverage_before_expand": {
+      "mean": 0.7943439447240379,
+      "std": 0.0017388005484354537
+    },
+    "lexicon_size": {
+      "mean": 654.2,
+      "std": 6.954135460285484
+    }
+  },
+  "completed_seeds": 10,
+  "total_seeds": 10
+}

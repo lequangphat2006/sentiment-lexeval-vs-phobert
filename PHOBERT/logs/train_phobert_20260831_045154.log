@@ -1,0 +1,516 @@
+2026-08-31 04:51:54,954 | INFO     | ############################################################
+2026-08-31 04:51:54,954 | INFO     | CHẠY PHOBERT — 10 seed của lần gọi này: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]  (còn lại 10: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51])  |  toàn bộ giao thức: 10 seed [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
+2026-08-31 04:51:54,954 | INFO     | ############################################################
+2026-08-31 04:51:54,954 | INFO     | 
+########## [PHOBERT] SEED 1/10 còn lại (seed=42) ##########
+2026-08-31 04:51:54,986 | INFO     | ============================================================
+2026-08-31 04:51:54,986 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=42)
+2026-08-31 04:51:54,986 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 04:51:54,986 | INFO     | ============================================================
+2026-08-31 04:51:55,000 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 04:51:55,001 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 04:51:55,001 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 04:51:55,188 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 04:52:13,555 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 04:52:13,568 | INFO     | Train: 23926 | Calibration: 7982 | Test: 7982
+2026-08-31 04:52:13,575 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 04:52:45,482 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 04:52:54,523 | INFO     | Bắt đầu training...
+2026-08-31 05:23:46,162 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 05:24:27,540 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9508
+2026-08-31 05:24:27,540 | INFO     | ✅ Accuracy TEST = 0.9506
+2026-08-31 05:24:27,547 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.94      0.94      2575
+     neutral       0.94      0.95      0.94      2796
+    positive       0.96      0.96      0.96      2611
+
+    accuracy                           0.95      7982
+   macro avg       0.95      0.95      0.95      7982
+weighted avg       0.95      0.95      0.95      7982
+
+2026-08-31 05:24:27,615 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 05:24:27,618 | INFO     |   phu_dinh    : n=3510  acc=0.939  f1_macro=0.918
+2026-08-31 05:24:27,621 | INFO     |   hedge       : n= 835  acc=0.963  f1_macro=0.547
+2026-08-31 05:24:27,624 | INFO     |   trai_chieu  : n=2629  acc=0.944  f1_macro=0.927
+2026-08-31 05:24:27,627 | INFO     |   cau_ngan    : n=  12  acc=0.917  f1_macro=0.869
+2026-08-31 05:24:27,627 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 05:24:27,628 | INFO     |   Lớp negative: train=32.8%  predict(test)=31.7%  lệch=-1.0%
+2026-08-31 05:24:27,628 | INFO     |   Lớp neutral: train=34.8%  predict(test)=35.5%  lệch=+0.8%
+2026-08-31 05:24:27,628 | INFO     |   Lớp positive: train=32.5%  predict(test)=32.7%  lệch=+0.2%
+2026-08-31 05:24:27,629 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 05:24:27,629 | INFO     |   mean_entropy=0.0764  mean_confidence=0.9790 (±0.0638)
+2026-08-31 05:24:27,631 | INFO     | ── Calibration: ECE=0.0283  Brier=0.0818 ──
+2026-08-31 05:24:27,864 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 05:24:27,864 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 05:25:08,913 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=42) → reports/phobert_logits/phobert_calib_seed_42.csv  (7982 dòng, 3 lớp)
+2026-08-31 05:25:08,969 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=42) → reports/phobert_logits/phobert_test_seed_42.csv  (7982 dòng, 3 lớp)
+2026-08-31 05:25:09,971 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 05:25:09,971 | INFO     | ⏱️  Tổng thời gian: 1995.0s
+2026-08-31 05:25:10,258 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=42 vào models/production/phobert_seed42 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 05:25:10,728 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=42 (models/phobert/checkpoints/seed_42) để tiết kiệm đĩa.
+2026-08-31 05:25:10,850 | INFO     | 
+########## [PHOBERT] SEED 2/10 còn lại (seed=43) ##########
+2026-08-31 05:25:10,850 | INFO     | ⏳ ETA còn lại ước tính: 5.0 giờ (dựa trên trung bình 1995s/seed đã chạy)
+2026-08-31 05:25:10,851 | INFO     | ============================================================
+2026-08-31 05:25:10,851 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=43)
+2026-08-31 05:25:10,851 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 05:25:10,851 | INFO     | ============================================================
+2026-08-31 05:25:10,852 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 05:25:10,852 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 05:25:10,852 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 05:25:11,025 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 05:25:29,218 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 05:25:29,231 | INFO     | Train: 23925 | Calibration: 7989 | Test: 7976
+2026-08-31 05:25:29,239 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 05:26:01,547 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 05:26:10,375 | INFO     | Bắt đầu training...
+2026-08-31 05:57:04,984 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 05:57:46,319 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9450
+2026-08-31 05:57:46,320 | INFO     | ✅ Accuracy TEST = 0.9448
+2026-08-31 05:57:46,328 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.93      0.94      2629
+     neutral       0.93      0.95      0.94      2766
+    positive       0.95      0.96      0.96      2581
+
+    accuracy                           0.94      7976
+   macro avg       0.95      0.94      0.94      7976
+weighted avg       0.95      0.94      0.94      7976
+
+2026-08-31 05:57:46,392 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 05:57:46,395 | INFO     |   phu_dinh    : n=3621  acc=0.936  f1_macro=0.916
+2026-08-31 05:57:46,398 | INFO     |   hedge       : n= 867  acc=0.969  f1_macro=0.645
+2026-08-31 05:57:46,401 | INFO     |   trai_chieu  : n=2604  acc=0.939  f1_macro=0.916
+2026-08-31 05:57:46,404 | INFO     |   cau_ngan    : n=  11  acc=0.818  f1_macro=0.806
+2026-08-31 05:57:46,405 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 05:57:46,405 | INFO     |   Lớp negative: train=32.6%  predict(test)=32.0%  lệch=-0.5%
+2026-08-31 05:57:46,405 | INFO     |   Lớp neutral: train=34.8%  predict(test)=35.5%  lệch=+0.7%
+2026-08-31 05:57:46,406 | INFO     |   Lớp positive: train=32.7%  predict(test)=32.4%  lệch=-0.2%
+2026-08-31 05:57:46,406 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 05:57:46,407 | INFO     |   mean_entropy=0.0777  mean_confidence=0.9787 (±0.0638)
+2026-08-31 05:57:46,408 | INFO     | ── Calibration: ECE=0.0340  Brier=0.0932 ──
+2026-08-31 05:57:46,548 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 05:57:46,548 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 05:58:27,649 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=43) → reports/phobert_logits/phobert_calib_seed_43.csv  (7989 dòng, 3 lớp)
+2026-08-31 05:58:27,704 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=43) → reports/phobert_logits/phobert_test_seed_43.csv  (7976 dòng, 3 lớp)
+2026-08-31 05:58:29,119 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 05:58:29,119 | INFO     | ⏱️  Tổng thời gian: 1998.3s
+2026-08-31 05:58:29,402 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=43 vào models/production/phobert_seed43 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 05:58:29,869 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=43 (models/phobert/checkpoints/seed_43) để tiết kiệm đĩa.
+2026-08-31 05:58:29,993 | INFO     | 
+########## [PHOBERT] SEED 3/10 còn lại (seed=44) ##########
+2026-08-31 05:58:29,993 | INFO     | ⏳ ETA còn lại ước tính: 4.4 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 05:58:29,994 | INFO     | ============================================================
+2026-08-31 05:58:29,994 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=44)
+2026-08-31 05:58:29,994 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 05:58:29,994 | INFO     | ============================================================
+2026-08-31 05:58:29,994 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 05:58:29,994 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 05:58:29,995 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 05:58:30,168 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 05:58:49,192 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 05:58:49,206 | INFO     | Train: 23937 | Calibration: 7979 | Test: 7974
+2026-08-31 05:58:49,214 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 05:59:21,182 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 05:59:30,042 | INFO     | Bắt đầu training...
+2026-08-31 06:30:24,552 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 06:31:05,896 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9507
+2026-08-31 06:31:05,896 | INFO     | ✅ Accuracy TEST = 0.9507
+2026-08-31 06:31:05,905 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.93      0.94      2548
+     neutral       0.94      0.96      0.95      2787
+    positive       0.96      0.96      0.96      2639
+
+    accuracy                           0.95      7974
+   macro avg       0.95      0.95      0.95      7974
+weighted avg       0.95      0.95      0.95      7974
+
+2026-08-31 06:31:05,981 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 06:31:05,985 | INFO     |   phu_dinh    : n=3540  acc=0.944  f1_macro=0.925
+2026-08-31 06:31:05,988 | INFO     |   hedge       : n= 874  acc=0.977  f1_macro=0.682
+2026-08-31 06:31:05,995 | INFO     |   trai_chieu  : n=2651  acc=0.947  f1_macro=0.930
+2026-08-31 06:31:05,999 | INFO     |   cau_ngan    : n=  10  acc=0.900  f1_macro=0.926
+2026-08-31 06:31:06,000 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 06:31:06,000 | INFO     |   Lớp negative: train=32.9%  predict(test)=31.1%  lệch=-1.8%
+2026-08-31 06:31:06,001 | INFO     |   Lớp neutral: train=34.6%  predict(test)=35.8%  lệch=+1.2%
+2026-08-31 06:31:06,001 | INFO     |   Lớp positive: train=32.5%  predict(test)=33.1%  lệch=+0.6%
+2026-08-31 06:31:06,002 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 06:31:06,002 | INFO     |   mean_entropy=0.0799  mean_confidence=0.9775 (±0.0667)
+2026-08-31 06:31:06,004 | INFO     | ── Calibration: ECE=0.0273  Brier=0.0820 ──
+2026-08-31 06:31:06,169 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 06:31:06,169 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 06:31:47,431 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=44) → reports/phobert_logits/phobert_calib_seed_44.csv  (7979 dòng, 3 lớp)
+2026-08-31 06:31:47,491 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=44) → reports/phobert_logits/phobert_test_seed_44.csv  (7974 dòng, 3 lớp)
+2026-08-31 06:31:48,879 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 06:31:48,879 | INFO     | ⏱️  Tổng thời gian: 1998.9s
+2026-08-31 06:31:49,164 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=44 vào models/production/phobert_seed44 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 06:31:49,638 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=44 (models/phobert/checkpoints/seed_44) để tiết kiệm đĩa.
+2026-08-31 06:31:49,762 | INFO     | 
+########## [PHOBERT] SEED 4/10 còn lại (seed=45) ##########
+2026-08-31 06:31:49,762 | INFO     | ⏳ ETA còn lại ước tính: 3.9 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 06:31:49,763 | INFO     | ============================================================
+2026-08-31 06:31:49,763 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=45)
+2026-08-31 06:31:49,763 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 06:31:49,763 | INFO     | ============================================================
+2026-08-31 06:31:49,763 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 06:31:49,763 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 06:31:49,764 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 06:31:49,936 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 06:32:08,390 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 06:32:08,404 | INFO     | Train: 23940 | Calibration: 7980 | Test: 7970
+2026-08-31 06:32:08,411 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 06:32:40,276 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 06:32:49,032 | INFO     | Bắt đầu training...
+2026-08-31 07:03:42,619 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 07:04:23,963 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9460
+2026-08-31 07:04:23,963 | INFO     | ✅ Accuracy TEST = 0.9458
+2026-08-31 07:04:23,971 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.94      0.94      0.94      2568
+     neutral       0.93      0.95      0.94      2815
+    positive       0.97      0.95      0.96      2587
+
+    accuracy                           0.95      7970
+   macro avg       0.95      0.95      0.95      7970
+weighted avg       0.95      0.95      0.95      7970
+
+2026-08-31 07:04:24,035 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 07:04:24,039 | INFO     |   phu_dinh    : n=3498  acc=0.937  f1_macro=0.911
+2026-08-31 07:04:24,041 | INFO     |   hedge       : n= 854  acc=0.978  f1_macro=0.639
+2026-08-31 07:04:24,045 | INFO     |   trai_chieu  : n=2671  acc=0.939  f1_macro=0.913
+2026-08-31 07:04:24,047 | INFO     |   cau_ngan    : n=  16  acc=1.000  f1_macro=1.000
+2026-08-31 07:04:24,048 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 07:04:24,048 | INFO     |   Lớp negative: train=32.5%  predict(test)=32.3%  lệch=-0.3%
+2026-08-31 07:04:24,048 | INFO     |   Lớp neutral: train=34.7%  predict(test)=35.9%  lệch=+1.2%
+2026-08-31 07:04:24,049 | INFO     |   Lớp positive: train=32.8%  predict(test)=31.9%  lệch=-0.9%
+2026-08-31 07:04:24,050 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 07:04:24,050 | INFO     |   mean_entropy=0.1012  mean_confidence=0.9715 (±0.0718)
+2026-08-31 07:04:24,051 | INFO     | ── Calibration: ECE=0.0258  Brier=0.0878 ──
+2026-08-31 07:04:24,187 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 07:04:24,187 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 07:05:05,548 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=45) → reports/phobert_logits/phobert_calib_seed_45.csv  (7980 dòng, 3 lớp)
+2026-08-31 07:05:05,604 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=45) → reports/phobert_logits/phobert_test_seed_45.csv  (7970 dòng, 3 lớp)
+2026-08-31 07:05:06,917 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 07:05:06,917 | INFO     | ⏱️  Tổng thời gian: 1997.2s
+2026-08-31 07:05:07,202 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=45 vào models/production/phobert_seed45 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 07:05:07,667 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=45 (models/phobert/checkpoints/seed_45) để tiết kiệm đĩa.
+2026-08-31 07:05:07,791 | INFO     | 
+########## [PHOBERT] SEED 5/10 còn lại (seed=46) ##########
+2026-08-31 07:05:07,791 | INFO     | ⏳ ETA còn lại ước tính: 3.3 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 07:05:07,792 | INFO     | ============================================================
+2026-08-31 07:05:07,792 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=46)
+2026-08-31 07:05:07,792 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 07:05:07,792 | INFO     | ============================================================
+2026-08-31 07:05:07,792 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 07:05:07,792 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 07:05:07,793 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 07:05:07,963 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 07:05:26,553 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 07:05:26,566 | INFO     | Train: 23937 | Calibration: 7990 | Test: 7963
+2026-08-31 07:05:26,573 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 07:05:58,679 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 07:06:07,453 | INFO     | Bắt đầu training...
+2026-08-31 07:37:02,031 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 07:37:43,324 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9463
+2026-08-31 07:37:43,324 | INFO     | ✅ Accuracy TEST = 0.9463
+2026-08-31 07:37:43,333 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.92      0.94      2604
+     neutral       0.93      0.96      0.94      2759
+    positive       0.96      0.96      0.96      2600
+
+    accuracy                           0.95      7963
+   macro avg       0.95      0.95      0.95      7963
+weighted avg       0.95      0.95      0.95      7963
+
+2026-08-31 07:37:43,404 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 07:37:43,407 | INFO     |   phu_dinh    : n=3526  acc=0.936  f1_macro=0.913
+2026-08-31 07:37:43,410 | INFO     |   hedge       : n= 861  acc=0.963  f1_macro=0.598
+2026-08-31 07:37:43,413 | INFO     |   trai_chieu  : n=2667  acc=0.938  f1_macro=0.914
+2026-08-31 07:37:43,416 | INFO     |   cau_ngan    : n=  11  acc=0.909  f1_macro=0.922
+2026-08-31 07:37:43,417 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 07:37:43,417 | INFO     |   Lớp negative: train=32.3%  predict(test)=31.5%  lệch=-0.8%
+2026-08-31 07:37:43,417 | INFO     |   Lớp neutral: train=35.2%  predict(test)=35.7%  lệch=+0.5%
+2026-08-31 07:37:43,417 | INFO     |   Lớp positive: train=32.5%  predict(test)=32.8%  lệch=+0.3%
+2026-08-31 07:37:43,418 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 07:37:43,418 | INFO     |   mean_entropy=0.0816  mean_confidence=0.9771 (±0.0671)
+2026-08-31 07:37:43,420 | INFO     | ── Calibration: ECE=0.0308  Brier=0.0885 ──
+2026-08-31 07:37:43,556 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 07:37:43,556 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 07:38:24,766 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=46) → reports/phobert_logits/phobert_calib_seed_46.csv  (7990 dòng, 3 lớp)
+2026-08-31 07:38:24,820 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=46) → reports/phobert_logits/phobert_test_seed_46.csv  (7963 dòng, 3 lớp)
+2026-08-31 07:38:26,135 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 07:38:26,135 | INFO     | ⏱️  Tổng thời gian: 1998.3s
+2026-08-31 07:38:26,413 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=46 vào models/production/phobert_seed46 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 07:38:26,890 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=46 (models/phobert/checkpoints/seed_46) để tiết kiệm đĩa.
+2026-08-31 07:38:27,020 | INFO     | 
+########## [PHOBERT] SEED 6/10 còn lại (seed=47) ##########
+2026-08-31 07:38:27,020 | INFO     | ⏳ ETA còn lại ước tính: 2.8 giờ (dựa trên trung bình 1998s/seed đã chạy)
+2026-08-31 07:38:27,021 | INFO     | ============================================================
+2026-08-31 07:38:27,021 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=47)
+2026-08-31 07:38:27,021 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 07:38:27,021 | INFO     | ============================================================
+2026-08-31 07:38:27,022 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 07:38:27,022 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 07:38:27,022 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 07:38:27,210 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 07:38:45,554 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 07:38:45,568 | INFO     | Train: 23936 | Calibration: 7979 | Test: 7975
+2026-08-31 07:38:45,576 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 07:39:17,504 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 07:39:26,259 | INFO     | Bắt đầu training...
+2026-08-31 08:10:19,350 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 08:11:00,771 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9539
+2026-08-31 08:11:00,771 | INFO     | ✅ Accuracy TEST = 0.9537
+2026-08-31 08:11:00,780 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.94      0.95      2606
+     neutral       0.94      0.96      0.95      2820
+    positive       0.96      0.96      0.96      2549
+
+    accuracy                           0.95      7975
+   macro avg       0.95      0.95      0.95      7975
+weighted avg       0.95      0.95      0.95      7975
+
+2026-08-31 08:11:00,861 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 08:11:00,865 | INFO     |   phu_dinh    : n=3536  acc=0.943  f1_macro=0.922
+2026-08-31 08:11:00,869 | INFO     |   hedge       : n= 871  acc=0.976  f1_macro=0.674
+2026-08-31 08:11:00,872 | INFO     |   trai_chieu  : n=2723  acc=0.944  f1_macro=0.924
+2026-08-31 08:11:00,876 | INFO     |   cau_ngan    : n=  14  acc=1.000  f1_macro=1.000
+2026-08-31 08:11:00,877 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 08:11:00,877 | INFO     |   Lớp negative: train=32.5%  predict(test)=32.0%  lệch=-0.5%
+2026-08-31 08:11:00,878 | INFO     |   Lớp neutral: train=34.6%  predict(test)=36.2%  lệch=+1.6%
+2026-08-31 08:11:00,878 | INFO     |   Lớp positive: train=32.9%  predict(test)=31.8%  lệch=-1.0%
+2026-08-31 08:11:00,879 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 08:11:00,879 | INFO     |   mean_entropy=0.0841  mean_confidence=0.9759 (±0.0690)
+2026-08-31 08:11:00,881 | INFO     | ── Calibration: ECE=0.0223  Brier=0.0759 ──
+2026-08-31 08:11:01,023 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 08:11:01,023 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 08:11:42,131 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=47) → reports/phobert_logits/phobert_calib_seed_47.csv  (7979 dòng, 3 lớp)
+2026-08-31 08:11:42,187 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=47) → reports/phobert_logits/phobert_test_seed_47.csv  (7975 dòng, 3 lớp)
+2026-08-31 08:11:43,502 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 08:11:43,502 | INFO     | ⏱️  Tổng thời gian: 1996.5s
+2026-08-31 08:11:43,784 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=47 vào models/production/phobert_seed47 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 08:11:44,255 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=47 (models/phobert/checkpoints/seed_47) để tiết kiệm đĩa.
+2026-08-31 08:11:44,383 | INFO     | 
+########## [PHOBERT] SEED 7/10 còn lại (seed=48) ##########
+2026-08-31 08:11:44,383 | INFO     | ⏳ ETA còn lại ước tính: 2.2 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 08:11:44,384 | INFO     | ============================================================
+2026-08-31 08:11:44,384 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=48)
+2026-08-31 08:11:44,384 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 08:11:44,384 | INFO     | ============================================================
+2026-08-31 08:11:44,385 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 08:11:44,385 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 08:11:44,385 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 08:11:44,557 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 08:12:03,063 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 08:12:03,076 | INFO     | Train: 23925 | Calibration: 7984 | Test: 7981
+2026-08-31 08:12:03,084 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 08:12:34,855 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 08:12:43,793 | INFO     | Bắt đầu training...
+2026-08-31 08:43:35,401 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 08:44:16,636 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9470
+2026-08-31 08:44:16,637 | INFO     | ✅ Accuracy TEST = 0.9470
+2026-08-31 08:44:16,644 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.95      0.93      0.94      2577
+     neutral       0.94      0.94      0.94      2757
+    positive       0.95      0.97      0.96      2647
+
+    accuracy                           0.95      7981
+   macro avg       0.95      0.95      0.95      7981
+weighted avg       0.95      0.95      0.95      7981
+
+2026-08-31 08:44:16,710 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 08:44:16,714 | INFO     |   phu_dinh    : n=3526  acc=0.936  f1_macro=0.915
+2026-08-31 08:44:16,717 | INFO     |   hedge       : n= 840  acc=0.960  f1_macro=0.528
+2026-08-31 08:44:16,720 | INFO     |   trai_chieu  : n=2647  acc=0.940  f1_macro=0.917
+2026-08-31 08:44:16,723 | INFO     |   cau_ngan    : n=  16  acc=0.875  f1_macro=0.814
+2026-08-31 08:44:16,723 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 08:44:16,724 | INFO     |   Lớp negative: train=32.7%  predict(test)=31.3%  lệch=-1.4%
+2026-08-31 08:44:16,724 | INFO     |   Lớp neutral: train=34.9%  predict(test)=34.8%  lệch=-0.1%
+2026-08-31 08:44:16,724 | INFO     |   Lớp positive: train=32.4%  predict(test)=33.9%  lệch=+1.5%
+2026-08-31 08:44:16,725 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 08:44:16,725 | INFO     |   mean_entropy=0.0807  mean_confidence=0.9774 (±0.0668)
+2026-08-31 08:44:16,727 | INFO     | ── Calibration: ECE=0.0306  Brier=0.0877 ──
+2026-08-31 08:44:16,869 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 08:44:16,869 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 08:44:58,207 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=48) → reports/phobert_logits/phobert_calib_seed_48.csv  (7984 dòng, 3 lớp)
+2026-08-31 08:44:58,261 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=48) → reports/phobert_logits/phobert_test_seed_48.csv  (7981 dòng, 3 lớp)
+2026-08-31 08:44:59,554 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 08:44:59,554 | INFO     | ⏱️  Tổng thời gian: 1995.2s
+2026-08-31 08:44:59,836 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=48 vào models/production/phobert_seed48 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 08:45:00,307 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=48 (models/phobert/checkpoints/seed_48) để tiết kiệm đĩa.
+2026-08-31 08:45:00,432 | INFO     | 
+########## [PHOBERT] SEED 8/10 còn lại (seed=49) ##########
+2026-08-31 08:45:00,432 | INFO     | ⏳ ETA còn lại ước tính: 1.7 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 08:45:00,433 | INFO     | ============================================================
+2026-08-31 08:45:00,433 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=49)
+2026-08-31 08:45:00,433 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 08:45:00,433 | INFO     | ============================================================
+2026-08-31 08:45:00,433 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 08:45:00,433 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 08:45:00,433 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 08:45:00,609 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 08:45:18,988 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 08:45:19,002 | INFO     | Train: 23947 | Calibration: 7971 | Test: 7972
+2026-08-31 08:45:19,011 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 08:45:51,100 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 08:45:59,848 | INFO     | Bắt đầu training...
+2026-08-31 09:16:54,473 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 09:17:35,816 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9483
+2026-08-31 09:17:35,816 | INFO     | ✅ Accuracy TEST = 0.9481
+2026-08-31 09:17:35,824 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.96      0.93      0.94      2608
+     neutral       0.93      0.95      0.94      2788
+    positive       0.96      0.96      0.96      2576
+
+    accuracy                           0.95      7972
+   macro avg       0.95      0.95      0.95      7972
+weighted avg       0.95      0.95      0.95      7972
+
+2026-08-31 09:17:35,898 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 09:17:35,902 | INFO     |   phu_dinh    : n=3528  acc=0.938  f1_macro=0.917
+2026-08-31 09:17:35,905 | INFO     |   hedge       : n= 855  acc=0.973  f1_macro=0.664
+2026-08-31 09:17:35,909 | INFO     |   trai_chieu  : n=2630  acc=0.943  f1_macro=0.917
+2026-08-31 09:17:35,912 | INFO     |   cau_ngan    : n=  16  acc=0.875  f1_macro=0.856
+2026-08-31 09:17:35,913 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 09:17:35,913 | INFO     |   Lớp negative: train=32.7%  predict(test)=31.7%  lệch=-0.9%
+2026-08-31 09:17:35,913 | INFO     |   Lớp neutral: train=34.6%  predict(test)=35.7%  lệch=+1.2%
+2026-08-31 09:17:35,914 | INFO     |   Lớp positive: train=32.8%  predict(test)=32.5%  lệch=-0.2%
+2026-08-31 09:17:35,915 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 09:17:35,915 | INFO     |   mean_entropy=0.0878  mean_confidence=0.9749 (±0.0701)
+2026-08-31 09:17:35,917 | INFO     | ── Calibration: ECE=0.0270  Brier=0.0849 ──
+2026-08-31 09:17:36,074 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 09:17:36,074 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 09:18:17,304 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=49) → reports/phobert_logits/phobert_calib_seed_49.csv  (7971 dòng, 3 lớp)
+2026-08-31 09:18:17,358 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=49) → reports/phobert_logits/phobert_test_seed_49.csv  (7972 dòng, 3 lớp)
+2026-08-31 09:18:18,661 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 09:18:18,661 | INFO     | ⏱️  Tổng thời gian: 1998.2s
+2026-08-31 09:18:18,979 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=49 vào models/production/phobert_seed49 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 09:18:19,483 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=49 (models/phobert/checkpoints/seed_49) để tiết kiệm đĩa.
+2026-08-31 09:18:19,615 | INFO     | 
+########## [PHOBERT] SEED 9/10 còn lại (seed=50) ##########
+2026-08-31 09:18:19,615 | INFO     | ⏳ ETA còn lại ước tính: 1.1 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 09:18:19,616 | INFO     | ============================================================
+2026-08-31 09:18:19,616 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=50)
+2026-08-31 09:18:19,616 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 09:18:19,616 | INFO     | ============================================================
+2026-08-31 09:18:19,616 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 09:18:19,617 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 09:18:19,617 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 09:18:19,803 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 09:18:38,019 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 09:18:38,032 | INFO     | Train: 23933 | Calibration: 7987 | Test: 7970
+2026-08-31 09:18:38,040 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 09:19:10,061 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 09:19:19,192 | INFO     | Bắt đầu training...
+2026-08-31 09:50:12,793 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 09:50:54,200 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9458
+2026-08-31 09:50:54,200 | INFO     | ✅ Accuracy TEST = 0.9457
+2026-08-31 09:50:54,208 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.93      0.95      0.94      2513
+     neutral       0.94      0.94      0.94      2846
+    positive       0.96      0.95      0.96      2611
+
+    accuracy                           0.95      7970
+   macro avg       0.95      0.95      0.95      7970
+weighted avg       0.95      0.95      0.95      7970
+
+2026-08-31 09:50:54,277 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 09:50:54,280 | INFO     |   phu_dinh    : n=3539  acc=0.939  f1_macro=0.911
+2026-08-31 09:50:54,283 | INFO     |   hedge       : n= 856  acc=0.967  f1_macro=0.604
+2026-08-31 09:50:54,287 | INFO     |   trai_chieu  : n=2656  acc=0.944  f1_macro=0.919
+2026-08-31 09:50:54,290 | INFO     |   cau_ngan    : n=  14  acc=1.000  f1_macro=1.000
+2026-08-31 09:50:54,291 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 09:50:54,291 | INFO     |   Lớp negative: train=32.6%  predict(test)=32.1%  lệch=-0.5%
+2026-08-31 09:50:54,291 | INFO     |   Lớp neutral: train=34.8%  predict(test)=35.4%  lệch=+0.7%
+2026-08-31 09:50:54,291 | INFO     |   Lớp positive: train=32.6%  predict(test)=32.4%  lệch=-0.1%
+2026-08-31 09:50:54,292 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 09:50:54,292 | INFO     |   mean_entropy=0.1301  mean_confidence=0.9645 (±0.0760)
+2026-08-31 09:50:54,294 | INFO     | ── Calibration: ECE=0.0188  Brier=0.0854 ──
+2026-08-31 09:50:54,439 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 09:50:54,439 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 09:51:35,594 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=50) → reports/phobert_logits/phobert_calib_seed_50.csv  (7987 dòng, 3 lớp)
+2026-08-31 09:51:35,652 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=50) → reports/phobert_logits/phobert_test_seed_50.csv  (7970 dòng, 3 lớp)
+2026-08-31 09:51:37,050 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 09:51:37,050 | INFO     | ⏱️  Tổng thời gian: 1997.4s
+2026-08-31 09:51:37,350 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=50 vào models/production/phobert_seed50 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 09:51:37,836 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=50 (models/phobert/checkpoints/seed_50) để tiết kiệm đĩa.
+2026-08-31 09:51:37,962 | INFO     | 
+########## [PHOBERT] SEED 10/10 còn lại (seed=51) ##########
+2026-08-31 09:51:37,962 | INFO     | ⏳ ETA còn lại ước tính: 0.6 giờ (dựa trên trung bình 1997s/seed đã chạy)
+2026-08-31 09:51:37,963 | INFO     | ============================================================
+2026-08-31 09:51:37,963 | INFO     | 🚀 BẮT ĐẦU FINE-TUNE vinai/phobert-base-v2 (seed=51)
+2026-08-31 09:51:37,963 | INFO     |    max_length=192  batch_size/GPU=32  n_gpu=2  grad_accum=1 (effective batch=64)  fp16=True  gradient_checkpointing=False  freeze_layers=0
+2026-08-31 09:51:37,963 | INFO     | ============================================================
+2026-08-31 09:51:37,963 | INFO     | GPU 0: Tesla T4  VRAM: 15.6 GB
+2026-08-31 09:51:37,963 | INFO     | GPU 1: Tesla T4  VRAM: 15.6 GB
+2026-08-31 09:51:37,964 | INFO     | 🚀 Phát hiện 2 GPU — Trainer sẽ tự dùng DataParallel, per_device_batch_size=32 áp dụng CHO MỖI GPU (tổng batch trước grad_accum = 64).
+2026-08-31 09:51:38,135 | INFO     | Đã nạp 39890 mẫu. Nhãn: ['negative', 'neutral', 'positive']
+2026-08-31 09:51:56,624 | INFO     | [SPLIT-16] Chia dữ liệu bằng StratifiedGroupKFold (lấy 1 fold, 60/20/20) theo cột 'near_dup_group_id' — group-aware VÀ xấp xỉ cân bằng lớp.
+2026-08-31 09:51:56,637 | INFO     | Train: 23950 | Calibration: 7969 | Test: 7971
+2026-08-31 09:51:56,646 | INFO     | Tách từ (word segmentation) cho PhoBERT...
+2026-08-31 09:52:28,848 | INFO     | Nạp tokenizer/model 'vinai/phobert-base-v2'...
+2026-08-31 09:52:37,710 | INFO     | Bắt đầu training...
+2026-08-31 10:23:33,636 | INFO     | Đánh giá trên tập Test (chạy đúng 1 lần)...
+2026-08-31 10:24:14,972 | INFO     | ✅ F1-Macro TEST (chạy đúng 1 lần) = 0.9480
+2026-08-31 10:24:14,972 | INFO     | ✅ Accuracy TEST = 0.9477
+2026-08-31 10:24:14,981 | INFO     | 
+              precision    recall  f1-score   support
+
+    negative       0.94      0.94      0.94      2656
+     neutral       0.94      0.94      0.94      2777
+    positive       0.96      0.96      0.96      2538
+
+    accuracy                           0.95      7971
+   macro avg       0.95      0.95      0.95      7971
+weighted avg       0.95      0.95      0.95      7971
+
+2026-08-31 10:24:15,102 | INFO     | ── Phân tích lỗi theo phân nhóm ngữ nghĩa (đồng bộ Trục 5 của LexEval) ──
+2026-08-31 10:24:15,107 | INFO     |   phu_dinh    : n=3533  acc=0.944  f1_macro=0.923
+2026-08-31 10:24:15,112 | INFO     |   hedge       : n= 836  acc=0.968  f1_macro=0.681
+2026-08-31 10:24:15,116 | INFO     |   trai_chieu  : n=2625  acc=0.942  f1_macro=0.921
+2026-08-31 10:24:15,119 | INFO     |   cau_ngan    : n=  11  acc=0.909  f1_macro=0.869
+2026-08-31 10:24:15,120 | INFO     | ── Kiểm tra lệch phân phối dự đoán so với train ──
+2026-08-31 10:24:15,120 | INFO     |   Lớp negative: train=32.8%  predict(test)=33.4%  lệch=+0.6%
+2026-08-31 10:24:15,120 | INFO     |   Lớp neutral: train=34.5%  predict(test)=35.0%  lệch=+0.5%
+2026-08-31 10:24:15,121 | INFO     |   Lớp positive: train=32.7%  predict(test)=31.6%  lệch=-1.1%
+2026-08-31 10:24:15,122 | INFO     | ── Entropy/độ tin cậy trung bình ──
+2026-08-31 10:24:15,122 | INFO     |   mean_entropy=0.0933  mean_confidence=0.9734 (±0.0722)
+2026-08-31 10:24:15,124 | INFO     | ── Calibration: ECE=0.0257  Brier=0.0826 ──
+2026-08-31 10:24:15,287 | INFO     | 📊 Đã lưu confusion matrix vào reports/confusion_matrix_phobert.png
+2026-08-31 10:24:15,287 | INFO     | Trích xuất logits trên tập Calibration (phục vụ Temperature Scaling, Bước 5)...
+2026-08-31 10:24:56,439 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs calib (seed=51) → reports/phobert_logits/phobert_calib_seed_51.csv  (7969 dòng, 3 lớp)
+2026-08-31 10:24:56,495 | INFO     | 💾 [EXPORT-LOGITS] Đã lưu logits/probs test (seed=51) → reports/phobert_logits/phobert_test_seed_51.csv  (7971 dòng, 3 lớp)
+2026-08-31 10:24:57,887 | INFO     | 📁 Đã lưu mô hình + baseline giám sát vào models/production/phobert  (516.95 MB)
+2026-08-31 10:24:57,887 | INFO     | ⏱️  Tổng thời gian: 1999.9s
+2026-08-31 10:24:58,208 | INFO     | 🔒 [FULL-MODEL-10-SEED] Đã sao lưu riêng checkpoint đầy đủ seed=51 vào models/production/phobert_seed51 (516.95 MB, không bị các seed sau ghi đè).
+2026-08-31 10:24:58,680 | INFO     | 🧹 Đã xoá checkpoint tạm của seed=51 (models/phobert/checkpoints/seed_51) để tiết kiệm đĩa.
+2026-08-31 10:24:58,815 | INFO     | ============================================================
+2026-08-31 10:24:58,816 | INFO     | ✅ PHOBERT — qua 10/10 seed:
+2026-08-31 10:24:58,816 | INFO     |    f1_comparable: 0.9482 ± 0.0027
+2026-08-31 10:24:58,816 | INFO     |    f1: 0.9482 ± 0.0027
+2026-08-31 10:24:58,816 | INFO     |    accuracy: 0.9480 ± 0.0027
+2026-08-31 10:24:58,816 | INFO     |    ece: 0.0271 ± 0.0041
+2026-08-31 10:24:58,816 | INFO     |    brier: 0.0850 ± 0.0045
+2026-08-31 10:24:58,816 | INFO     |    training_time_sec: 1997.4897 ± 1.4965
+2026-08-31 10:24:58,816 | INFO     |    model_size_mb: 516.9539 ± 0.0003
+2026-08-31 10:24:58,816 | INFO     |    mean_confidence: 0.9750 ± 0.0042
+2026-08-31 10:24:58,817 | INFO     |    mean_entropy: 0.0893 ± 0.0154
+2026-08-31 10:24:58,817 | INFO     |    Chi tiết từng seed: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
+2026-08-31 10:24:58,817 | INFO     | 📁 Đã lưu results_phobert_multiseed.json
+2026-08-31 10:24:58,817 | INFO     | ============================================================

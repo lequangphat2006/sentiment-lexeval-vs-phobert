@@ -1,0 +1,112 @@
+{
+  "42": {
+    "v40": {
+      "hash_cal": "c37745274f91411a",
+      "hash_test": "a349e4d06b0c0bcf",
+      "hash_train": "43df56c2b4a9450d",
+      "n_cal": 7982,
+      "n_rows": 39890,
+      "n_test": 7982,
+      "n_train": 23926
+    }
+  },
+  "43": {
+    "v40": {
+      "hash_cal": "0f5e70ed1666e782",
+      "hash_test": "fc82fff1af1757b3",
+      "hash_train": "9980c23eb941da4b",
+      "n_cal": 7989,
+      "n_rows": 39890,
+      "n_test": 7976,
+      "n_train": 23925
+    }
+  },
+  "44": {
+    "v40": {
+      "hash_cal": "b9f7dc67087548b8",
+      "hash_test": "4166b76d1c9d1e49",
+      "hash_train": "2ce6dac3592dce4a",
+      "n_cal": 7979,
+      "n_rows": 39890,
+      "n_test": 7974,
+      "n_train": 23937
+    }
+  },
+  "45": {
+    "v40": {
+      "hash_cal": "2f8d6c238431d8f9",
+      "hash_test": "df13e83b8ecb542d",
+      "hash_train": "a725d95ac9275218",
+      "n_cal": 7980,
+      "n_rows": 39890,
+      "n_test": 7970,
+      "n_train": 23940
+    }
+  },
+  "46": {
+    "v40": {
+      "hash_cal": "1be6c7b8bc6b5af9",
+      "hash_test": "ba659740abfd9e76",
+      "hash_train": "2ed753f9c74d9d04",
+      "n_cal": 7990,
+      "n_rows": 39890,
+      "n_test": 7963,
+      "n_train": 23937
+    }
+  },
+  "47": {
+    "v40": {
+      "hash_cal": "df164f965c3c47cc",
+      "hash_test": "ec12548a94c9577a",
+      "hash_train": "96c65b6f8deed9f3",
+      "n_cal": 7979,
+      "n_rows": 39890,
+      "n_test": 7975,
+      "n_train": 23936
+    }
+  },
+  "48": {
+    "v40": {
+      "hash_cal": "c8ea86d2ecf65c06",
+      "hash_test": "0175c079aff0207b",
+      "hash_train": "d0abd21b6b8498d0",
+      "n_cal": 7984,
+      "n_rows": 39890,
+      "n_test": 7981,
+      "n_train": 23925
+    }
+  },
+  "49": {
+    "v40": {
+      "hash_cal": "c2b65a97c6dc4560",
+      "hash_test": "a90adf83bf35efde",
+      "hash_train": "bd3ea1b6a3fd53b2",
+      "n_cal": 7971,
+      "n_rows": 39890,
+      "n_test": 7972,
+      "n_train": 23947
+    }
+  },
+  "50": {
+    "v40": {
+      "hash_cal": "ede338e4d1729cd1",
+      "hash_test": "b74e29d9c2ef8efd",
+      "hash_train": "f9ccbc96d147b0c3",
+      "n_cal": 7987,
+      "n_rows": 39890,
+      "n_test": 7970,
+      "n_train": 23933
+    }
+  },
+  "51": {
+    "v40": {
+      "hash_cal": "e182bd364dcfd8d1",
+      "hash_test": "e4e0425f178d606a",
+      "hash_train": "c5a94917e1491cf6",
+      "n_cal": 7969,
+      "n_rows": 39890,
+      "n_test": 7971,
+      "n_train": 23950
+    }
+  }
+}

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Model checkpoints (large binaries — PhoBERT ~517 MB)
+models/
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+
+# Optuna
+optuna/
+*.db
+
+# Env / secrets
+.env
+*.env
+
+# Local inspection / temp files
+inspect*.txt
+
+# Backup
+*.bak
